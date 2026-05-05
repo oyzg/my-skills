@@ -9,9 +9,22 @@ Skills use Claude Code tool names. When you encounter these in a skill, use your
 | Task returns result | `wait_agent` |
 | Task completes automatically | `close_agent` to free slot |
 | `TodoWrite` (task tracking) | `update_plan` |
-| `Skill` tool (invoke a skill) | Skills load natively — just follow the instructions |
+| `Skill` tool (invoke a skill) | Read the listed `SKILL.md` path with native file tools, then follow it |
 | `Read`, `Write`, `Edit` (files) | Use your native file tools |
 | `Bash` (run commands) | Use your native shell tools |
+
+## Skill loading in Codex
+
+Codex provides skill metadata in the session prompt, but not a dedicated
+runtime `Skill` invocation tool. Treat "use skill X" as:
+
+1. Find the skill entry in the available skills list.
+2. Resolve its path from the listed skill roots.
+3. Read only the needed parts of `SKILL.md` and directly referenced files.
+4. Announce the skill and follow it.
+
+Do not use stale memory of a skill. Skill files change between plugin
+versions.
 
 ## Subagent dispatch requires multi-agent support
 
@@ -23,6 +36,10 @@ multi_agent = true
 ```
 
 This enables `spawn_agent`, `wait_agent`, and `close_agent` for skills like `dispatching-parallel-agents` and `subagent-driven-development`.
+
+In the Codex App, subagent tools may already be present. Only dispatch
+subagents when the user explicitly asks for parallel agent work or the
+current harness policy permits it.
 
 Legacy note: Codex builds before `rust-v0.115.0` exposed spawned-agent
 waiting as `wait`. Current Codex uses `wait_agent` for spawned agents. The

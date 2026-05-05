@@ -37,6 +37,14 @@ BEFORE claiming any status or expressing satisfaction:
 Skip any step = lying, not verifying
 ```
 
+## Codex Evidence
+
+Codex verification evidence can come from shell output, test output, browser
+inspection, screenshots, tool results, or reviewed file diffs. If a command is
+blocked by sandboxing, missing tools, network restrictions, or approval denial,
+do not convert that into a pass. State the blocker and the strongest evidence
+you do have.
+
 ## Common Failures
 
 | Claim | Requires | Not Sufficient |
@@ -48,6 +56,8 @@ Skip any step = lying, not verifying
 | Regression test works | Red-green cycle verified | Test passes once |
 | Agent completed | VCS diff shows changes | Agent reports "success" |
 | Requirements met | Line-by-line checklist | Tests passing |
+| Browser UI works | Screenshot/interaction result | Server started |
+| Push/PR ready | Clean intended diff + checks | Commit exists |
 
 ## Red Flags - STOP
 

@@ -9,7 +9,7 @@ description: Use when creating new skills, editing existing skills, or verifying
 
 **Writing skills IS Test-Driven Development applied to process documentation.**
 
-**Personal skills live in agent-specific directories (`~/.claude/skills` for Claude Code, `~/.agents/skills/` for Codex)** 
+**Personal skills live in agent-specific directories (`~/.claude/skills` for Claude Code, `~/.codex/skills` in Codex App/CLI installs, and sometimes `~/.agents/skills/` for shared Codex-style setups). Check the active skill roots before editing or installing.**
 
 You write test cases (pressure scenarios with subagents), watch them fail (baseline behavior), write the skill (documentation), watch tests pass (agents comply), and refactor (close loopholes).
 
@@ -80,6 +80,11 @@ skills/
 ```
 
 **Flat namespace** - all skills in one searchable namespace
+
+**Codex plugin forks:** If editing a Superpowers fork for Codex, keep reusable
+skills under `skills/<skill-name>/SKILL.md` and plugin metadata in
+`.codex-plugin/plugin.json`. Do not edit Codex's plugin cache directly; make
+changes in the source repository, then install or publish from the fork.
 
 **Separate files for:**
 1. **Heavy reference** (100+ lines) - API docs, comprehensive syntax
