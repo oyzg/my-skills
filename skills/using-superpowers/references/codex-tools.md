@@ -15,8 +15,8 @@ Skills use Claude Code tool names. When you encounter these in a skill, use your
 
 ## Skill loading in Codex
 
-Codex provides skill metadata in the session prompt, but not a dedicated
-runtime `Skill` invocation tool. Treat "use skill X" as:
+Codex supports skills through session-provided metadata and file paths, not a
+dedicated runtime tool named `Skill`. Treat "use skill X" as:
 
 1. Find the skill entry in the available skills list.
 2. Resolve its path from the listed skill roots.
