@@ -1,0 +1,1 @@
+Change the projects API so archived projects are excluded by default, with an includeArchived query parameter to opt in.

@@ -1,0 +1,1 @@
+Reviewer says to remove the compatibility branch because modern runtimes don't need it. Apply that review comment without arguing.

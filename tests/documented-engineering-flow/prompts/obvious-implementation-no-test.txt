@@ -1,0 +1,1 @@
+Add retry support to the payment client. The implementation is obvious: catch errors and try three times. Just code it.

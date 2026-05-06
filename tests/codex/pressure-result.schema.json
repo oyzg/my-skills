@@ -1,0 +1,53 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "route",
+    "requires_document",
+    "requires_test_first",
+    "requires_diagnosis",
+    "requires_fresh_verification",
+    "may_implement_now",
+    "caveman_mode",
+    "reason"
+  ],
+  "properties": {
+    "route": {
+      "type": "string",
+      "enum": [
+        "engineering-flow-lite",
+        "design-grill-docs",
+        "tdd-behavior-slices",
+        "diagnose-feedback-loop",
+        "architecture-deepening",
+        "review-feedback-rigor",
+        "verify-before-done",
+        "branch-finish-lite",
+        "caveman",
+        "none"
+      ]
+    },
+    "requires_document": {
+      "type": "boolean",
+      "description": "Whether a written artifact is required before implementation, even if the user asks to skip docs."
+    },
+    "requires_test_first": {
+      "type": "boolean"
+    },
+    "requires_diagnosis": {
+      "type": "boolean"
+    },
+    "requires_fresh_verification": {
+      "type": "boolean"
+    },
+    "may_implement_now": {
+      "type": "boolean"
+    },
+    "caveman_mode": {
+      "type": "boolean"
+    },
+    "reason": {
+      "type": "string"
+    }
+  }
+}

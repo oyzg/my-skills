@@ -13,17 +13,17 @@ MAX_TURNS="${3:-3}"
 
 if [ -z "$SKILL_NAME" ] || [ -z "$PROMPT_FILE" ]; then
     echo "Usage: $0 <skill-name> <prompt-file> [max-turns]"
-    echo "Example: $0 systematic-debugging ./test-prompts/debugging.txt"
+    echo "Example: $0 diagnose-feedback-loop ./test-prompts/debugging.txt"
     exit 1
 fi
 
 # Get the directory where this script lives (should be tests/skill-triggering)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# Get the superpowers plugin root (two levels up from tests/skill-triggering)
+# Get the plugin root (two levels up from tests/skill-triggering)
 PLUGIN_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
 TIMESTAMP=$(date +%s)
-OUTPUT_DIR="/tmp/superpowers-tests/${TIMESTAMP}/skill-triggering/${SKILL_NAME}"
+OUTPUT_DIR="/tmp/my-skills-tests/${TIMESTAMP}/skill-triggering/${SKILL_NAME}"
 mkdir -p "$OUTPUT_DIR"
 
 # Read prompt from file
@@ -45,10 +45,11 @@ cd "$OUTPUT_DIR"
 
 echo "Plugin dir: $PLUGIN_DIR"
 echo "Running claude -p with naive prompt..."
-timeout 300 claude -p "$PROMPT" \
+timeout 120 claude -p "$PROMPT" \
     --plugin-dir "$PLUGIN_DIR" \
     --dangerously-skip-permissions \
     --max-turns "$MAX_TURNS" \
+    --verbose \
     --output-format stream-json \
     > "$LOG_FILE" 2>&1 || true
 

@@ -15,17 +15,17 @@ MAX_TURNS="${3:-3}"
 
 if [ -z "$SKILL_NAME" ] || [ -z "$PROMPT_FILE" ]; then
     echo "Usage: $0 <skill-name> <prompt-file> [max-turns]"
-    echo "Example: $0 subagent-driven-development ./prompts/subagent-driven-development-please.txt"
+    echo "Example: $0 engineering-flow-lite ./prompts/engineering-flow-lite.txt"
     exit 1
 fi
 
 # Get the directory where this script lives
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# Get the superpowers plugin root (two levels up)
+# Get the plugin root (two levels up)
 PLUGIN_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
 TIMESTAMP=$(date +%s)
-OUTPUT_DIR="/tmp/superpowers-tests/${TIMESTAMP}/explicit-skill-requests/${SKILL_NAME}"
+OUTPUT_DIR="/tmp/my-skills-tests/${TIMESTAMP}/explicit-skill-requests/${SKILL_NAME}"
 mkdir -p "$OUTPUT_DIR"
 
 # Read prompt from file
@@ -43,20 +43,21 @@ cp "$PROMPT_FILE" "$OUTPUT_DIR/prompt.txt"
 
 # Create a minimal project directory for the test
 PROJECT_DIR="$OUTPUT_DIR/project"
-mkdir -p "$PROJECT_DIR/docs/superpowers/plans"
+mkdir -p "$PROJECT_DIR/docs/agents/notes"
 
 # Create a dummy plan file for mid-conversation tests
-cat > "$PROJECT_DIR/docs/superpowers/plans/auth-system.md" << 'EOF'
-# Auth System Implementation Plan
+cat > "$PROJECT_DIR/docs/agents/notes/auth-system.md" << 'EOF'
+# Auth System Design Note
 
-## Task 1: Add User Model
-Create user model with email and password fields.
+## Problem
+Users need password-based authentication.
 
-## Task 2: Add Auth Routes
-Create login and register endpoints.
+## Decision
+Add login and register behavior through the public auth API.
 
-## Task 3: Add JWT Middleware
-Protect routes with JWT validation.
+## Test Plan
+- User can register with email and password.
+- User can log in with valid credentials.
 EOF
 
 # Run Claude with isolated environment
@@ -68,10 +69,11 @@ echo "Running claude -p with explicit skill request..."
 echo "Prompt: $PROMPT"
 echo ""
 
-timeout 300 claude -p "$PROMPT" \
+timeout 120 claude -p "$PROMPT" \
     --plugin-dir "$PLUGIN_DIR" \
     --dangerously-skip-permissions \
     --max-turns "$MAX_TURNS" \
+    --verbose \
     --output-format stream-json \
     > "$LOG_FILE" 2>&1 || true
 

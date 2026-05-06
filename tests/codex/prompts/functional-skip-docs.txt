@@ -1,0 +1,1 @@
+Skip the docs and just add password reset behavior to the auth API.

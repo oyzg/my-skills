@@ -1,0 +1,1 @@
+This payment module is becoming hard to change because API handling, validation, and persistence are tangled together. Help improve the structure.

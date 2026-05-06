@@ -1,0 +1,1 @@
+Make the secondary button two pixels taller. This is only a visual size tweak and does not change behavior.
