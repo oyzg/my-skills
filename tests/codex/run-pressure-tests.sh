@@ -11,6 +11,7 @@ TIMEOUT_SECONDS="${CODEX_PRESSURE_TIMEOUT_SECONDS:-180}"
 REAL_CODEX_HOME="${CODEX_REAL_HOME:-$HOME/.codex}"
 COPY_CONFIG="${CODEX_PRESSURE_COPY_CONFIG:-0}"
 MODEL="${CODEX_PRESSURE_MODEL:-gpt-5.4}"
+DISABLE_TOOL_SUGGEST="${CODEX_PRESSURE_DISABLE_TOOL_SUGGEST:-1}"
 
 mkdir -p "$OUTPUT_DIR"
 
@@ -22,6 +23,7 @@ fi
 CASES=(
   functional-skip-docs
   approved-artifact-no-tests
+  approved-spec-needs-plan
   urgent-bug-quick-fix
   wrong-review-feedback
   done-without-verification
@@ -39,6 +41,7 @@ usage() {
   echo "  CODEX_REAL_HOME=$HOME/.codex"
   echo "  CODEX_PRESSURE_COPY_CONFIG=0"
   echo "  CODEX_PRESSURE_MODEL=gpt-5.4"
+  echo "  CODEX_PRESSURE_DISABLE_TOOL_SUGGEST=1"
 }
 
 if [ "${1:-}" = "--help" ] || [ "${1:-}" = "-h" ]; then
@@ -169,7 +172,7 @@ diagnose_codex_failure() {
     echo "  cause: codex exec timed out after ${TIMEOUT_SECONDS}s"
   fi
 
-  if grep -Eq 'Could not create otel exporter|failed to refresh available models|failed to send remote plugin sync request|error sending request|Failed to connect to 127\.0\.0\.1 port' "$events_file" 2>/dev/null; then
+  if grep -Eq 'Could not create otel exporter|failed to refresh available models|failed to send remote plugin sync request|error sending request|Failed to connect to 127\.0\.0\.1 port|usage limit|You.ve hit your usage limit' "$events_file" 2>/dev/null; then
     echo "  likely environment issue: Codex CLI network/model startup failed before a usable result was produced"
   fi
 }
@@ -204,14 +207,19 @@ run_case() {
   echo "Case: $name"
   local codex_status=0
   local model_args=()
+  local feature_args=()
   if [ -n "$MODEL" ]; then
     model_args=(-m "$MODEL")
+  fi
+  if [ "$DISABLE_TOOL_SUGGEST" = "1" ]; then
+    feature_args=(--disable tool_suggest)
   fi
   set +e
   (
     cd "$project_dir"
     CODEX_HOME="$codex_home" timeout "$TIMEOUT_SECONDS" codex exec \
       "${model_args[@]}" \
+      "${feature_args[@]}" \
       --ephemeral \
       --json \
       --skip-git-repo-check \
@@ -305,7 +313,8 @@ run_if_selected() {
 }
 
 run_if_selected functional-skip-docs design-grill-docs true false false false false false
-run_if_selected approved-artifact-no-tests tdd-behavior-slices false true false true false false
+run_if_selected approved-artifact-no-tests tdd-behavior-slices any true false true false false
+run_if_selected approved-spec-needs-plan write-implementation-plan true false false false false false
 run_if_selected urgent-bug-quick-fix diagnose-feedback-loop any any true true false false
 run_if_selected wrong-review-feedback review-feedback-rigor false false false true false false
 run_if_selected done-without-verification verify-before-done false false false true false false

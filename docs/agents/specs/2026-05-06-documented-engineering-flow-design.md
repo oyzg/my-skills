@@ -6,7 +6,8 @@ Create a lightweight software-development skill set that combines strict
 quality gates with Matt Pocock's smaller, composable engineering skills.
 
 The first version covers the development loop only: clarify work, write the
-right document, implement with tests, diagnose failures, handle review,
+right document, write implementation plans when sequencing is needed, implement
+with tests, diagnose failures, handle review,
 verify completion, and finish the branch. It is Codex-first: the required
 runtime contract is the Codex plugin manifest plus `skills/*/SKILL.md`.
 Claude, Cursor, Gemini, and OpenCode files are compatibility surfaces. It does
@@ -38,6 +39,18 @@ full-process load for ordinary feature implementation.
 5. Bug fixing starts with a feedback loop and root-cause investigation.
 6. Completion claims require fresh verification evidence.
 7. Caveman mode compresses communication only; it never removes required gates.
+
+## Weight Target
+
+The skill set should sit between Matt Pocock's very small single-purpose skills
+and the previous full Superpowers workflow. Runtime `SKILL.md` files should stay
+short enough for Codex to load cheaply, but core workflows may include
+progressively loaded templates or references:
+
+- Documentation and planning skills can include templates.
+- TDD, diagnosis, and architecture skills can include compact references.
+- Avoid large scripts, long prompt packs, or framework-specific assets unless
+  they directly improve repeatable Codex behavior.
 
 ## Skill Set
 
@@ -102,7 +115,32 @@ Non-responsibilities:
 - It does not implement code.
 - It does not force a full strict plan for every feature.
 
-### 3. `tdd-behavior-slices`
+### 3. `write-implementation-plan`
+
+Category: implementation planning.
+
+Source influences: the previous plan-writing workflow and Matt lightweight task
+breakdown skills.
+
+Purpose: turn an approved design note, spec, PRD, or ADR into an executable
+plan before implementation when the work needs sequencing.
+
+Responsibilities:
+
+- Read the approved artifact and relevant code.
+- Split implementation into ordered behavior slices.
+- Name likely files, interfaces, and ownership boundaries.
+- Attach a focused test or verification step to each slice.
+- Write `docs/agents/plans/YYYY-MM-DD-topic.md`.
+- Ask the user to approve the plan before implementation starts.
+
+Non-responsibilities:
+
+- It does not invent requirements missing from the source artifact.
+- It does not force a plan for a single obvious implementation slice.
+- It does not replace TDD; it feeds `tdd-behavior-slices`.
+
+### 4. `tdd-behavior-slices`
 
 Category: implementation.
 
@@ -125,7 +163,7 @@ Non-responsibilities:
 - It does not decide whether a document is required.
 - It does not replace diagnosis for bugs without a feedback loop.
 
-### 4. `diagnose-feedback-loop`
+### 5. `diagnose-feedback-loop`
 
 Category: debugging.
 
@@ -148,7 +186,7 @@ Non-responsibilities:
 - It does not permit speculative quick fixes.
 - It does not require long reports when a concise loop and evidence are enough.
 
-### 5. `architecture-deepening`
+### 6. `architecture-deepening`
 
 Category: architecture.
 
@@ -173,7 +211,7 @@ Non-responsibilities:
 - It does not authorize broad unrelated refactors.
 - It does not replace ADRs for consequential architecture decisions.
 
-### 6. `review-feedback-rigor`
+### 7. `review-feedback-rigor`
 
 Category: review.
 
@@ -196,7 +234,7 @@ Non-responsibilities:
 - It does not use performative agreement as a substitute for verification.
 - It does not treat external feedback as automatically correct.
 
-### 7. `verify-before-done`
+### 8. `verify-before-done`
 
 Category: verification.
 
@@ -217,7 +255,7 @@ Non-responsibilities:
 - It does not turn missing verification into a pass.
 - It does not rely on old output or agent confidence.
 
-### 8. `branch-finish-lite`
+### 9. `branch-finish-lite`
 
 Category: branch / PR finish.
 
@@ -238,7 +276,7 @@ Non-responsibilities:
 - It does not cover release management.
 - It does not create PRs without user approval and required PR-template work.
 
-### 9. `caveman`
+### 10. `caveman`
 
 Category: communication mode.
 
@@ -307,6 +345,7 @@ warnings, or omit verification evidence.
 engineering-flow-lite
 -> design-grill-docs
 -> user approves artifact
+-> write-implementation-plan when sequencing is needed
 -> tdd-behavior-slices
 -> verify-before-done
 -> branch-finish-lite when user wants integration
@@ -369,6 +408,8 @@ The first implementation should be tested with adversarial prompts before use:
    targeted verification still required.
 8. User requests API behavior change. Expected: Level 2 spec before
    implementation.
+9. User has an approved spec and asks for sequencing. Expected: writes a
+   `docs/agents/plans/` implementation plan before TDD.
 
 ## Open Questions
 

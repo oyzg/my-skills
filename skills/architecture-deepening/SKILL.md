@@ -31,6 +31,8 @@ refactors require a written artifact before code changes.
 - Data shape changes ripple through many modules.
 - The only available regression seam is too shallow to catch the real bug.
 
+See `REFERENCE.md` for deep-module signals and recommendation shape.
+
 ## Guardrails
 
 - No broad unrelated refactors.

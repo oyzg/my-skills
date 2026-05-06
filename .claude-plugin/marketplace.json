@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "my-skills",
-      "description": "Lightweight documented engineering workflow skills for coding agents.",
+      "description": "Lightweight documented planning and engineering workflow skills for coding agents.",
       "version": "0.1.0",
       "source": "./",
       "author": {

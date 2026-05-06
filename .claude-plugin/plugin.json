@@ -8,11 +8,12 @@
   "homepage": "https://github.com/oyzg/my-skills",
   "repository": "https://github.com/oyzg/my-skills",
   "license": "MIT",
-  "keywords": [
-    "skills",
-    "documentation",
-    "tdd",
-    "debugging",
-    "verification"
+    "keywords": [
+        "skills",
+        "documentation",
+        "planning",
+        "tdd",
+        "debugging",
+        "verification"
   ]
 }

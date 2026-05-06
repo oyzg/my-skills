@@ -27,6 +27,8 @@ and specific enough to prove the reported symptom. If the bug is flaky, raise
 the reproduction rate with repeated runs, stress, seeded inputs, or narrowed
 timing windows before fixing.
 
+See `REFERENCE.md` for feedback-loop examples and hypothesis shape.
+
 ## Hypotheses
 
 Each hypothesis must predict an observable result:

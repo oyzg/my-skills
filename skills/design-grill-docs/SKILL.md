@@ -32,29 +32,8 @@ then write the smallest sufficient artifact before implementation.
 
 ## Level 1 Template
 
-```markdown
-# <Topic> Design Note
-
-## Problem
-
-<Specific user-visible or developer-visible problem.>
-
-## Decision
-
-<Chosen behavior and why.>
-
-## Scope
-
-In:
-- <Included behavior>
-
-Out:
-- <Excluded behavior>
-
-## Test Plan
-
-- <Specific behavior test or verification>
-```
+Use `templates/design-note.md` for Level 1 notes, `templates/spec.md` for Level
+2 specs, and `templates/adr.md` for ADRs.
 
 ## Domain Docs
 

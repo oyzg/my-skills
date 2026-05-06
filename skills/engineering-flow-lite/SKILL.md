@@ -16,7 +16,8 @@ gates for documentation, diagnosis, TDD, review rigor, and verification.
 | --- | --- |
 | Functional feature or behavior change | `design-grill-docs` |
 | Bug, failure, regression, unexpected behavior | `diagnose-feedback-loop` |
-| Implementation after approved artifact | `tdd-behavior-slices` |
+| Approved artifact needs sequencing or a plan | `write-implementation-plan` |
+| Implementation after approved artifact and plan, if needed | `tdd-behavior-slices` |
 | Architecture concern or poor test seam | `architecture-deepening` |
 | Code review feedback | `review-feedback-rigor` |
 | Completion claim | `verify-before-done` |
@@ -25,7 +26,9 @@ gates for documentation, diagnosis, TDD, review rigor, and verification.
 
 If more than one row applies, use the process skill first. Diagnosis beats TDD
 when the behavior is broken and not understood. Documentation beats
-implementation when functional behavior is being created or changed.
+implementation when functional behavior is being created or changed. Planning
+beats implementation when approved work has multiple steps or coordination
+risk.
 
 ## Documentation Gate
 

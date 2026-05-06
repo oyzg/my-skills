@@ -1,8 +1,8 @@
 # My Skills Instructions
 
 Use `engineering-flow-lite` at the start of engineering work to choose the
-smallest workflow that preserves documentation, diagnosis, TDD, review, and
-verification gates.
+smallest workflow that preserves documentation, planning, diagnosis, TDD,
+review, and verification gates.
 
 This repository is Codex-first. Treat `.codex-plugin/plugin.json` and the
 `skills/*/SKILL.md` files as the primary product surface. Claude, Cursor,

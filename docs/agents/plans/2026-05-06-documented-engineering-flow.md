@@ -2,13 +2,14 @@
 
 ## Goal
 
-Replace the previous heavy workflow with a nine-skill lightweight documented
+Replace the previous heavy workflow with a ten-skill lightweight documented
 engineering flow for Codex-first usage.
 
 ## Final Skill Set
 
 - `engineering-flow-lite`
 - `design-grill-docs`
+- `write-implementation-plan`
 - `tdd-behavior-slices`
 - `diagnose-feedback-loop`
 - `architecture-deepening`
@@ -17,11 +18,17 @@ engineering flow for Codex-first usage.
 - `branch-finish-lite`
 - `caveman`
 
+## Weight Adjustment
+
+The first Codex-first pass was intentionally very light. The target is now
+middleweight: concise `SKILL.md` files plus selected templates and references
+for workflows where Codex benefits from concrete structure.
+
 ## Implementation Steps
 
 1. Add adversarial pressure-test prompts under `tests/documented-engineering-flow/prompts/`.
 2. Add `tests/documented-engineering-flow/run-pressure-tests.sh`.
-3. Create the nine replacement skills under `skills/`.
+3. Create the replacement skills under `skills/`.
 4. Update plugin manifests, bootstrap docs, and hook injection to `my-skills`.
 5. Replace trigger-test prompts with the new skill names.
 6. Remove legacy skill directories and legacy workflow test suites.
@@ -64,12 +71,14 @@ tests/codex/run-pressure-tests.sh
 The Codex runner uses `codex exec --ephemeral` and a temporary `CODEX_HOME`.
 It copies local Codex CLI authentication, then points `skills/` at this working
 tree. Each case asks Codex to choose the smallest applicable workflow and
-returns JSON checked by the test script. These tests cover docs, TDD, diagnosis,
-review, verification, branch finish, architecture, and caveman gates. Full
+returns JSON checked by the test script. These tests cover docs, planning, TDD,
+diagnosis, review, verification, branch finish, architecture, and caveman gates. Full
 Codex config copying is opt-in through `CODEX_PRESSURE_COPY_CONFIG=1` so global
 plugin settings do not pollute the pressure-test environment by default.
 The runner defaults to `CODEX_PRESSURE_MODEL=gpt-5.4` to avoid failing on local
 Codex CLI builds that do not yet support newer configured models.
+It disables tool suggestions by default so connector-directory network failures
+do not obscure skill-routing results.
 If Codex CLI fails during network/model startup, treat the run as blocked before
 behavior evaluation and rerun the failed case after fixing CLI access.
 

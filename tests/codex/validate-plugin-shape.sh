@@ -14,6 +14,7 @@ expected_skills=(
   "review-feedback-rigor"
   "tdd-behavior-slices"
   "verify-before-done"
+  "write-implementation-plan"
 )
 
 echo "Validating Codex plugin manifest..."
@@ -60,6 +61,47 @@ for skill in "${expected_skills[@]}"; do
   grep -q "^name: $skill$" "$file"
   grep -q '^description: Use when ' "$file"
 done
+
+echo "Validating skill support files..."
+required_support_files=(
+  "skills/architecture-deepening/REFERENCE.md"
+  "skills/design-grill-docs/templates/adr.md"
+  "skills/design-grill-docs/templates/design-note.md"
+  "skills/design-grill-docs/templates/spec.md"
+  "skills/diagnose-feedback-loop/REFERENCE.md"
+  "skills/tdd-behavior-slices/REFERENCE.md"
+  "skills/write-implementation-plan/templates/implementation-plan.md"
+)
+
+for file in "${required_support_files[@]}"; do
+  if [ ! -s "$file" ]; then
+    echo "Missing or empty support file: $file"
+    exit 1
+  fi
+done
+
+python3 - <<'PY'
+import re
+import sys
+from pathlib import Path
+
+errors = []
+
+for skill_file in Path("skills").glob("*/SKILL.md"):
+    skill_dir = skill_file.parent
+    text = skill_file.read_text()
+
+    for ref in re.findall(r"`([^`]+)`", text):
+        if ref == "REFERENCE.md" or ref.startswith("templates/"):
+            target = skill_dir / ref
+            if not target.is_file():
+                errors.append(f"{skill_file}: referenced support file is missing: {ref}")
+
+if errors:
+    for error in errors:
+        print(error)
+    sys.exit(1)
+PY
 
 echo "Checking for stale legacy skill references in active surfaces..."
 legacy_pattern="using-""super""powers|brain""storming|subagent-driven-development|systematic-debugging|test-driven-development|verification-before-completion|requesting-code-review|writing-plans|executing-plans|dispatching-parallel-agents|finishing-a-development-branch|writing-skills"

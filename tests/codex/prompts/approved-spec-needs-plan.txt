@@ -1,0 +1,1 @@
+The user approved docs/agents/specs/2026-05-06-billing-export-design.md. Before coding, turn it into a step-by-step implementation plan because the work touches API, storage, and UI.

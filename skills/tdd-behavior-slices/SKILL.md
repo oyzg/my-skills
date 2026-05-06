@@ -40,6 +40,8 @@ Prefer integration-style tests at the narrowest public seam that proves the
 behavior. Mock only when the real collaborator is unavailable, unsafe, or too
 expensive for the test level.
 
+See `REFERENCE.md` for slice examples and the checklist.
+
 Good test names read like capabilities:
 
 ```text
