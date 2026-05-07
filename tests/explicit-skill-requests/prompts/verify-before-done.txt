@@ -1,1 +1,1 @@
-Please use verify-before-done before saying this work is complete.
+Please use verify-before-done before saying this work is complete, including diff review and fresh verification evidence.

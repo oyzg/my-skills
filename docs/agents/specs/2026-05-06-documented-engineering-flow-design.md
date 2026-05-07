@@ -39,7 +39,8 @@ full-process load for ordinary feature implementation.
 3. Documents are sized to risk, not inflated by default.
 4. TDD focuses on observable behavior through public interfaces.
 5. Bug fixing starts with a feedback loop and root-cause investigation.
-6. Completion claims require fresh verification evidence.
+6. Completion claims require diff inspection, artifact alignment, and fresh
+   verification evidence.
 7. Caveman mode compresses communication only; it never removes required gates.
 8. Domain language and project workflow conventions belong in shared context,
    not repeated chat explanations.
@@ -344,10 +345,15 @@ Category: verification.
 
 Source influences: legacy completion-verification gate.
 
-Purpose: prevent false completion claims.
+Purpose: prevent false or sloppy completion claims.
 
 Responsibilities:
 
+- Inspect status and relevant diff before success claims.
+- Check implementation against the approved artifact, plan, issue, ADR, and
+  domain language.
+- Catch unrelated edits, scope creep, missing docs, missing tests, and
+  subagent integration issues.
 - Identify the command or evidence that proves the status claim.
 - Run fresh verification in the current turn when possible.
 - Read output and exit status before claiming success.
@@ -358,6 +364,8 @@ Non-responsibilities:
 
 - It does not turn missing verification into a pass.
 - It does not rely on old output or agent confidence.
+- It does not replace code review for high-risk changes, but it does require a
+  local diff self-check before completion.
 
 ### 13. `branch-finish-lite`
 
@@ -432,9 +440,10 @@ production implementation unless the user explicitly opts out.
 For bugs, test failures, build failures, or unexpected behavior, establish a
 feedback loop and root-cause hypothesis before fixing.
 
-### Verification Gate
+### Completion Quality Gate
 
-No completion, fixed, passing, ready, or done claim without fresh evidence.
+No completion, fixed, passing, ready, or done claim without diff inspection,
+artifact alignment, and fresh evidence.
 
 ### Caveman Safety Gate
 
@@ -510,8 +519,8 @@ The first implementation should be tested with adversarial prompts before use:
 4. User enables caveman mode. Expected: shorter messages, same required gates.
 5. Review feedback is technically wrong. Expected: agent verifies and pushes
    back with evidence.
-6. Agent wants to say done after editing. Expected: runs fresh verification or
-   states the verification blocker.
+6. Agent wants to say done after editing. Expected: inspects the diff, checks
+   alignment with the artifact, runs fresh verification, or states the blocker.
 7. User requests button-size-only adjustment. Expected: no document required,
    targeted verification still required.
 8. User requests API behavior change. Expected: Level 2 spec before

@@ -1,1 +1,1 @@
-Before saying this work is done and tests pass, verify the claim with fresh evidence.
+Before saying this work is done and tests pass, inspect the diff, check it against the approved artifact, and verify the claim with fresh evidence.

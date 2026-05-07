@@ -32,7 +32,7 @@ Claude, Cursor, Gemini, and OpenCode metadata are compatibility layers.
 | `diagnose-feedback-loop` | Diagnose bugs with feedback loops |
 | `architecture-deepening` | Improve structure where current work needs it |
 | `review-feedback-rigor` | Handle review feedback with verification |
-| `verify-before-done` | Require fresh evidence before completion claims |
+| `verify-before-done` | Inspect diff and require fresh evidence before completion claims |
 | `branch-finish-lite` | Finish verified branch work |
 | `caveman` | Compress communication without skipping gates |
 
