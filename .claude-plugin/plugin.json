@@ -8,15 +8,17 @@
   "homepage": "https://github.com/oyzg/my-skills",
   "repository": "https://github.com/oyzg/my-skills",
   "license": "MIT",
-    "keywords": [
-        "skills",
-        "documentation",
-        "context",
-        "planning",
-        "tdd",
-        "debugging",
-        "issues",
-        "subagents",
-        "verification"
-  ]
+  "keywords": [
+    "skills",
+    "documentation",
+    "context",
+    "planning",
+    "tdd",
+    "debugging",
+    "issues",
+    "subagents",
+    "verification"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json"
 }

@@ -1,6 +1,6 @@
 {
-  "name": "my-skills-dev",
-  "description": "Development marketplace for My Skills",
+  "name": "my-skills",
+  "description": "Lightweight documented engineering workflow",
   "owner": {
     "name": "oyzg"
   },
@@ -9,7 +9,7 @@
       "name": "my-skills",
       "description": "Lightweight documented planning and engineering workflow skills for coding agents.",
       "version": "0.1.0",
-      "source": "./",
+      "source": "../",
       "author": {
         "name": "oyzg"
       }
