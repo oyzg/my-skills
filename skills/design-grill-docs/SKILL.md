@@ -26,7 +26,7 @@ then write the smallest sufficient artifact before implementation.
 | 0 | none | Visual-only micro-change, typo, formatting-only, non-behavioral config cleanup |
 | 1 | `docs/agents/notes/YYYY-MM-DD-topic.md` | Single feature, single-module behavior, small logic bug |
 | 2 | `docs/agents/specs/YYYY-MM-DD-topic-design.md` | Multi-module behavior, API, data flow, permission, error handling |
-| 3 | Level 2 plus `docs/agents/plans/YYYY-MM-DD-topic.md` | Work needs sequencing, delegation, or multiple implementation tasks |
+| 3 | Level 2 spec, then route to `write-implementation-plan` | Work needs sequencing, delegation, or multiple implementation tasks |
 | ADR | `docs/adr/NNNN-title.md` | Hard to reverse, surprising, trade-off driven |
 | Domain context | `CONTEXT.md` | Domain term or boundary is resolved |
 

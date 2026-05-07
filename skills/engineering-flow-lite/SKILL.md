@@ -18,6 +18,7 @@ gates for documentation, diagnosis, TDD, review rigor, and verification.
 | Domain language, naming, or context confusion | `domain-context` |
 | Functional feature or behavior change | `design-grill-docs` |
 | Bug, failure, regression, unexpected behavior | `diagnose-feedback-loop` |
+| Performance target, benchmark regression, or optimization | `diagnose-feedback-loop` (benchmark harness variant) |
 | Approved artifact needs sequencing or a plan | `write-implementation-plan` |
 | Approved plan/spec needs tasks or issues | `slice-to-issues` |
 | User asks for subagents, delegation, or parallel agents | `subagent-coordination` |

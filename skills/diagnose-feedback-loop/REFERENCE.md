@@ -9,6 +9,7 @@
 | flaky test | repeated focused test with seed/logging |
 | build failure | smallest failing build command |
 | data bug | fixture import plus query/assertion |
+| perf regression | benchmark harness, profiler trace, or time-bounded test |
 
 ## Hypothesis Shape
 

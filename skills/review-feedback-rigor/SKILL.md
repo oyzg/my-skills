@@ -18,6 +18,7 @@ Review feedback is input to evaluate, not an order to obey blindly.
 5. Push back with evidence when feedback is wrong, harmful, or YAGNI.
 6. Implement valid feedback one item at a time.
 7. Test each meaningful change.
+8. Run `verify-before-done` before claiming the review is addressed.
 
 See `REFERENCE.md` for feedback classes and response shape.
 

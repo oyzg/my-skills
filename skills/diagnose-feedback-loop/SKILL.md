@@ -16,9 +16,10 @@ Build a reliable pass/fail loop before fixing. Root cause first, patch second.
 3. Write 3-5 ranked falsifiable hypotheses.
 4. Instrument one hypothesis at a time.
 5. Convert the minimized repro into a failing regression test when a correct seam exists.
-6. Fix the root cause.
-7. Rerun the original loop and regression test.
-8. Remove debug logs and throwaway harnesses.
+6. State the confirmed root cause and proposed fix scope to the user. If the fix touches more than the minimum required code, pause and confirm scope before patching.
+7. Fix the root cause.
+8. Rerun the original loop and regression test.
+9. Remove debug logs and throwaway harnesses.
 
 ## Feedback Loop Quality
 

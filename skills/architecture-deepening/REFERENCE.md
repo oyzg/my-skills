@@ -1,5 +1,14 @@
 # Architecture Deepening Reference
 
+## How to Discover Structural Problems
+
+1. Read the direct import graph of the affected file — which modules does it depend on?
+2. Identify callers: who imports this module? Do callers know internal shapes?
+3. Check test files for mock patterns — mocking private helpers signals a shallow boundary.
+4. Run `git log --name-only` on the affected file — files that always change together likely share hidden coupling.
+5. Trace data flow: where is the data created, transformed, and consumed? Count the layers that know its shape.
+6. Look for duplicated validation or permission checks across layers — these signal a missing authoritative boundary.
+
 ## Deep Module Signals
 
 Prefer modules with small public interfaces and substantial internal behavior.
