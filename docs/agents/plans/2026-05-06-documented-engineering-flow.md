@@ -43,6 +43,8 @@ for workflows where Codex benefits from concrete structure.
    decisions with structured output.
 9. Add concrete `docs/agents/examples/` artifacts to calibrate the expected
    detail level beyond templates.
+10. Add a local Codex install script that symlinks this repository's skills into
+   `${CODEX_HOME:-~/.codex}/skills` without installing unrelated skills.
 
 ## Verification Notes
 
@@ -66,6 +68,12 @@ Codex plugin shape should validate with:
 
 ```bash
 tests/codex/validate-plugin-shape.sh
+```
+
+Codex local skill install can be previewed with:
+
+```bash
+scripts/install-codex-skills.sh --dry-run
 ```
 
 Codex behavior pressure tests should validate routing decisions with:

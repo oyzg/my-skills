@@ -21,6 +21,19 @@ best for independent slices with clear ownership, not for urgent blocking work.
 If these are not true, use `write-implementation-plan`, `slice-to-issues`, or
 `tdd-behavior-slices` instead.
 
+## When Not To Delegate
+
+Do not start subagents yet when:
+
+- no approved artifact or implementation plan exists
+- the plan has not been split into independently reviewable slices
+- two candidate tasks need the same file or module ownership
+- the work is cross-cutting design, core interface design, or schema design
+- the next local step depends on the delegated result
+
+In these cases, write the missing artifact, split ownership, or keep the work in
+the main session.
+
 ## Process
 
 1. Read the approved artifact, plan, and relevant code boundaries.

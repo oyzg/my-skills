@@ -28,13 +28,23 @@ gates for documentation, diagnosis, TDD, review rigor, and verification.
 | Merge, PR, keep, discard | `branch-finish-lite` |
 | "caveman", "less tokens", "be brief" | `caveman` |
 
-If more than one row applies, use the process skill first. Diagnosis beats TDD
-when the behavior is broken and not understood. Documentation beats
-implementation when functional behavior is being created or changed. Planning
-beats implementation when approved work has multiple steps or coordination
-risk. Subagent coordination only applies after documentation/planning and
-explicit user approval for delegation. Domain language beats design when core
-terms are unclear.
+## Conflict Priority
+
+When multiple rows match, choose the first applicable priority:
+
+1. `caveman` modifies communication only; it never changes the workflow route.
+2. `verify-before-done` handles any done/fixed/passing/ready claim before final response.
+3. `branch-finish-lite` handles merge, PR, push, keep, or discard only after verification.
+4. `review-feedback-rigor` handles external review comments before edits.
+5. `diagnose-feedback-loop` beats TDD when behavior is broken or unexplained.
+6. `setup-project-context` beats feature work when repo docs/context conventions are missing.
+7. `domain-context` beats design when core terms or boundaries are unclear.
+8. `design-grill-docs` beats implementation for functional behavior changes.
+9. `write-implementation-plan` beats issue slicing, subagents, and implementation when approved work needs sequencing.
+10. `slice-to-issues` beats subagents when the plan has not been split into independently reviewable slices.
+11. `subagent-coordination` applies only after documentation/planning and explicit user approval for delegation.
+12. `tdd-behavior-slices` handles implementation after required artifacts and plans exist.
+13. `architecture-deepening` applies when current boundaries block the task; feed functional changes back to docs.
 
 ## Documentation Gate
 

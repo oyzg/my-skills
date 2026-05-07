@@ -25,6 +25,7 @@ echo "Validating Codex plugin manifest..."
 python3 -m json.tool .codex-plugin/plugin.json >/dev/null
 python3 -m json.tool tests/codex/pressure-result.schema.json >/dev/null
 bash -n tests/codex/run-pressure-tests.sh
+bash -n scripts/install-codex-skills.sh
 
 echo "Validating Codex pressure test cases..."
 for test_case in $(tests/codex/run-pressure-tests.sh --list); do
@@ -84,6 +85,10 @@ required_support_files=(
   "skills/write-implementation-plan/templates/implementation-plan.md"
 )
 
+required_scripts=(
+  "scripts/install-codex-skills.sh"
+)
+
 required_example_files=(
   "docs/agents/examples/context.md"
   "docs/agents/examples/implementation-plan.md"
@@ -96,6 +101,14 @@ required_example_files=(
 for file in "${required_support_files[@]}"; do
   if [ ! -s "$file" ]; then
     echo "Missing or empty support file: $file"
+    exit 1
+  fi
+done
+
+echo "Validating scripts..."
+for file in "${required_scripts[@]}"; do
+  if [ ! -s "$file" ]; then
+    echo "Missing or empty script: $file"
     exit 1
   fi
 done

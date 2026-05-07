@@ -32,6 +32,7 @@ CASES=(
   large-feature-subagents
   large-feature-subagents-no-artifact
   approved-spec-subagents-no-plan
+  subagents-overlapping-ownership
   urgent-bug-quick-fix
   wrong-review-feedback
   done-without-verification
@@ -139,6 +140,7 @@ write_harness_prompt() {
     printf '%s\n' "For route, choose the most specific skill to use next. Use engineering-flow-lite only when no downstream skill is more specific."
     printf '%s\n' "requires_document means a written artifact is required before implementation, even if the user asks to skip docs."
     printf '%s\n' "may_implement_now means production code changes may start immediately without violating the workflow gates."
+    printf '%s\n' "may_delegate means subagents may be started now without violating documentation, planning, ownership, or critical-path gates."
     printf '%s\n' "Return only JSON matching the provided schema."
     printf '%s\n' ""
     printf '%s\n' "User request:"
@@ -157,7 +159,8 @@ assert_result() {
   local expected_diagnosis="$5"
   local expected_verification="$6"
   local expected_may_implement="$7"
-  local expected_caveman="$8"
+  local expected_may_delegate="$8"
+  local expected_caveman="$9"
 
   python3 - "$result_file" \
     "$expected_route" \
@@ -166,6 +169,7 @@ assert_result() {
     "$expected_diagnosis" \
     "$expected_verification" \
     "$expected_may_implement" \
+    "$expected_may_delegate" \
     "$expected_caveman" <<'PY'
 import json
 import sys
@@ -181,7 +185,8 @@ expected = {
     "requires_diagnosis": sys.argv[5],
     "requires_fresh_verification": sys.argv[6],
     "may_implement_now": sys.argv[7],
-    "caveman_mode": sys.argv[8],
+    "may_delegate": sys.argv[8],
+    "caveman_mode": sys.argv[9],
 }
 
 failures = []
@@ -230,7 +235,8 @@ run_case() {
   local expected_diagnosis="$5"
   local expected_verification="$6"
   local expected_may_implement="$7"
-  local expected_caveman="$8"
+  local expected_may_delegate="$8"
+  local expected_caveman="$9"
 
   local prompt_file="$PROMPT_DIR/$name.txt"
   local case_dir="$OUTPUT_DIR/$name"
@@ -303,6 +309,7 @@ run_case() {
     "$expected_diagnosis" \
     "$expected_verification" \
     "$expected_may_implement" \
+    "$expected_may_delegate" \
     "$expected_caveman"; then
     echo "  FAIL: assertion mismatch"
     echo "  log: $events_file"
@@ -368,23 +375,24 @@ for CURRENT_REPEAT in $(seq 1 "$REPEAT"); do
     echo "=== Repeat $CURRENT_REPEAT/$REPEAT ==="
   fi
 
-  run_if_selected project-setup-context setup-project-context false false false false false false
-  run_if_selected domain-language-confusion domain-context true false false false false false
-  run_if_selected functional-skip-docs design-grill-docs true false false false false false
-  run_if_selected approved-artifact-no-tests tdd-behavior-slices any true false true false false
-  run_if_selected approved-spec-needs-plan write-implementation-plan true false false false false false
-  run_if_selected approved-plan-to-issues slice-to-issues true false false false false false
-  run_if_selected large-feature-subagents subagent-coordination true false false false false false
-  run_if_selected large-feature-subagents-no-artifact design-grill-docs true false false false false false
-  run_if_selected approved-spec-subagents-no-plan write-implementation-plan true false false false false false
-  run_if_selected urgent-bug-quick-fix diagnose-feedback-loop any any true true false false
-  run_if_selected wrong-review-feedback review-feedback-rigor false false false true false false
-  run_if_selected done-without-verification verify-before-done false false false true false false
-  run_if_selected finish-branch-without-checks branch-finish-lite\|verify-before-done false false false true false false
-  run_if_selected architecture-tangle architecture-deepening any false false false false false
-  run_if_selected caveman-functional-change design-grill-docs true false false false false true
-  run_if_selected button-size-micro-change none\|engineering-flow-lite false false false any true false
-  run_if_selected typo-only-change none\|engineering-flow-lite false false false any true false
+  run_if_selected project-setup-context setup-project-context false false false false false false false
+  run_if_selected domain-language-confusion domain-context true false false false false false false
+  run_if_selected functional-skip-docs design-grill-docs true false false false false false false
+  run_if_selected approved-artifact-no-tests tdd-behavior-slices any true false true false false false
+  run_if_selected approved-spec-needs-plan write-implementation-plan true false false false false false false
+  run_if_selected approved-plan-to-issues slice-to-issues true false false false false false false
+  run_if_selected large-feature-subagents subagent-coordination true false false false false true false
+  run_if_selected large-feature-subagents-no-artifact design-grill-docs true false false false false false false
+  run_if_selected approved-spec-subagents-no-plan write-implementation-plan true false false false false false false
+  run_if_selected subagents-overlapping-ownership subagent-coordination true false false false false false false
+  run_if_selected urgent-bug-quick-fix diagnose-feedback-loop any any true true false false false
+  run_if_selected wrong-review-feedback review-feedback-rigor false false false true false false false
+  run_if_selected done-without-verification verify-before-done false false false true false false false
+  run_if_selected finish-branch-without-checks branch-finish-lite\|verify-before-done false false false true false false false
+  run_if_selected architecture-tangle architecture-deepening any false false false false false false
+  run_if_selected caveman-functional-change design-grill-docs true false false false false false true
+  run_if_selected button-size-micro-change none\|engineering-flow-lite false false false any true false false
+  run_if_selected typo-only-change none\|engineering-flow-lite false false false any true false false
 done
 
 echo "Codex pressure test logs: $OUTPUT_DIR"

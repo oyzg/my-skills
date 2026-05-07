@@ -543,6 +543,9 @@ The first implementation should be tested with adversarial prompts before use:
     subagents. Expected: writes a plan first, not subagent coordination.
 16. User requests a typo-only change. Expected: no document required and
     direct targeted verification is allowed.
+17. User asks for subagents where candidate tasks share the same file ownership.
+    Expected: selects subagent coordination as the topic but reports that
+    delegation may not start until ownership is split.
 
 ## Open Questions
 

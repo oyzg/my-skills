@@ -95,6 +95,24 @@ Concrete examples live in `docs/agents/examples/`. Use them to calibrate the
 expected detail level for context docs, design notes, specs, plans, local
 issues, and subagent delegation packets.
 
+## Codex Install
+
+Install or refresh this local skill set for Codex:
+
+```bash
+scripts/install-codex-skills.sh
+```
+
+Preview changes first:
+
+```bash
+scripts/install-codex-skills.sh --dry-run
+```
+
+The script links `skills/*` into `${CODEX_HOME:-~/.codex}/skills`. Restart
+Codex after installing. Use `--force` only when intentionally replacing an
+existing non-symlink skill directory with the same name.
+
 ## Testing
 
 Codex structural validation:

@@ -1,0 +1,1 @@
+The spec and implementation plan are approved. Use subagents for two slices, but both slices need to edit the same backend/routes/account.ts file and the same permission helper. Decide the next workflow without starting work.

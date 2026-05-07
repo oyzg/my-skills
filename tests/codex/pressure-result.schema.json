@@ -8,6 +8,7 @@
     "requires_diagnosis",
     "requires_fresh_verification",
     "may_implement_now",
+    "may_delegate",
     "caveman_mode",
     "reason"
   ],
@@ -47,6 +48,10 @@
     },
     "may_implement_now": {
       "type": "boolean"
+    },
+    "may_delegate": {
+      "type": "boolean",
+      "description": "Whether subagents may be started now without violating documentation, planning, ownership, or critical-path gates."
     },
     "caveman_mode": {
       "type": "boolean"
