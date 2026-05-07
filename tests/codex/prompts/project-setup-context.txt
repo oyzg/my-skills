@@ -1,0 +1,1 @@
+Set this repository up to use My Skills. Initialize the local docs/agents workflow docs and context files if they are missing, but do not start implementing a feature.

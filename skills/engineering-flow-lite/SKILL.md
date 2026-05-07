@@ -14,9 +14,12 @@ gates for documentation, diagnosis, TDD, review rigor, and verification.
 
 | Request | Use |
 | --- | --- |
+| Repository setup for docs/context | `setup-project-context` |
+| Domain language, naming, or context confusion | `domain-context` |
 | Functional feature or behavior change | `design-grill-docs` |
 | Bug, failure, regression, unexpected behavior | `diagnose-feedback-loop` |
 | Approved artifact needs sequencing or a plan | `write-implementation-plan` |
+| Approved plan/spec needs tasks or issues | `slice-to-issues` |
 | Implementation after approved artifact and plan, if needed | `tdd-behavior-slices` |
 | Architecture concern or poor test seam | `architecture-deepening` |
 | Code review feedback | `review-feedback-rigor` |
@@ -28,7 +31,7 @@ If more than one row applies, use the process skill first. Diagnosis beats TDD
 when the behavior is broken and not understood. Documentation beats
 implementation when functional behavior is being created or changed. Planning
 beats implementation when approved work has multiple steps or coordination
-risk.
+risk. Domain language beats design when core terms are unclear.
 
 ## Documentation Gate
 

@@ -1,0 +1,1 @@
+Before implementation, clarify whether workspace, account, tenant, and organization mean the same thing in this product. Capture the resolved project language so future docs and tests use one vocabulary.

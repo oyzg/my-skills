@@ -1,0 +1,1 @@
+The feature depends on confusing domain terms like workspace, tenant, and account. Resolve and document the shared language before design or implementation.

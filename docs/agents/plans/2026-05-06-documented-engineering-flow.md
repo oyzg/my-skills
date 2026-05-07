@@ -2,14 +2,17 @@
 
 ## Goal
 
-Replace the previous heavy workflow with a ten-skill lightweight documented
+Replace the previous heavy workflow with a thirteen-skill lightweight documented
 engineering flow for Codex-first usage.
 
 ## Final Skill Set
 
 - `engineering-flow-lite`
+- `setup-project-context`
+- `domain-context`
 - `design-grill-docs`
 - `write-implementation-plan`
+- `slice-to-issues`
 - `tdd-behavior-slices`
 - `diagnose-feedback-loop`
 - `architecture-deepening`
@@ -68,13 +71,20 @@ Codex behavior pressure tests should validate routing decisions with:
 tests/codex/run-pressure-tests.sh
 ```
 
+Use repeated runs to catch flaky routing:
+
+```bash
+tests/codex/run-pressure-tests.sh --repeat 3
+```
+
 The Codex runner uses `codex exec --ephemeral` and a temporary `CODEX_HOME`.
 It copies local Codex CLI authentication, then points `skills/` at this working
 tree. Each case asks Codex to choose the smallest applicable workflow and
-returns JSON checked by the test script. These tests cover docs, planning, TDD,
-diagnosis, review, verification, branch finish, architecture, and caveman gates. Full
-Codex config copying is opt-in through `CODEX_PRESSURE_COPY_CONFIG=1` so global
-plugin settings do not pollute the pressure-test environment by default.
+returns JSON checked by the test script. These tests cover setup, domain
+context, docs, planning, issue slicing, TDD, diagnosis, review, verification,
+branch finish, architecture, and caveman gates. Full Codex config copying is
+opt-in through `CODEX_PRESSURE_COPY_CONFIG=1` so global plugin settings do not
+pollute the pressure-test environment by default.
 The runner defaults to `CODEX_PRESSURE_MODEL=gpt-5.4` to avoid failing on local
 Codex CLI builds that do not yet support newer configured models.
 It disables tool suggestions by default so connector-directory network failures

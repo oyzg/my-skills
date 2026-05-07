@@ -1,0 +1,1 @@
+Set up this repository for the My Skills workflow by initializing local docs/agents conventions and context docs where needed.

@@ -29,6 +29,8 @@ Before any success claim:
 | UI works | Browser interaction, screenshot, or DOM evidence |
 | Requirements met | Checklist against the approved artifact |
 
+See `REFERENCE.md` for the evidence matrix and completion wording.
+
 ## Red Flags
 
 - "Should pass."

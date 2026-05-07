@@ -5,14 +5,15 @@
 Create a lightweight software-development skill set that combines strict
 quality gates with Matt Pocock's smaller, composable engineering skills.
 
-The first version covers the development loop only: clarify work, write the
-right document, write implementation plans when sequencing is needed, implement
-with tests, diagnose failures, handle review,
+The first version covers the development loop only: set up project context,
+clarify domain language, clarify work, write the right document, write
+implementation plans when sequencing is needed, split approved work into local
+issues when useful, implement with tests, diagnose failures, handle review,
 verify completion, and finish the branch. It is Codex-first: the required
-runtime contract is the Codex plugin manifest plus `skills/*/SKILL.md`.
-Claude, Cursor, Gemini, and OpenCode files are compatibility surfaces. It does
-not cover release management, CI repair as a standalone workflow, migrations,
-or production incidents.
+runtime contract is the Codex plugin manifest plus `skills/*/SKILL.md`. Claude,
+Cursor, Gemini, and OpenCode files are compatibility surfaces. It does not
+cover release management, CI repair as a standalone workflow, migrations, or
+production incidents.
 
 ## Problem
 
@@ -39,6 +40,8 @@ full-process load for ordinary feature implementation.
 5. Bug fixing starts with a feedback loop and root-cause investigation.
 6. Completion claims require fresh verification evidence.
 7. Caveman mode compresses communication only; it never removes required gates.
+8. Domain language and project workflow conventions belong in shared context,
+   not repeated chat explanations.
 
 ## Weight Target
 
@@ -79,7 +82,53 @@ Trigger examples:
 - Ambiguous request that might involve functionality.
 - User asks to build, fix, refactor, review, or finish work.
 
-### 2. `design-grill-docs`
+### 2. `setup-project-context`
+
+Category: project setup / docs scaffolding.
+
+Source influences: Matt setup skills, the user's preferred `docs/agents/`
+layout, Codex-first local workflow.
+
+Purpose: initialize the small repository context surface that the other skills
+assume.
+
+Responsibilities:
+
+- Inspect existing instructions and docs before creating anything.
+- Create missing `docs/agents/notes/`, `specs/`, `plans/`, and `issues/`
+  directories only when useful.
+- Add `docs/agents/README.md` so future agents know where local artifacts live.
+- Add `CONTEXT.md` when domain language matters.
+- Keep setup local, tool-agnostic, and dependency-free.
+
+Non-responsibilities:
+
+- It does not overwrite existing project conventions.
+- It does not configure third-party issue trackers unless the user asks.
+
+### 3. `domain-context`
+
+Category: domain language / context.
+
+Source influences: Matt domain-language emphasis and legacy design grilling.
+
+Purpose: capture stable business terms, aliases, boundaries, and relationships
+before design or implementation relies on them.
+
+Responsibilities:
+
+- Inspect existing `CONTEXT.md`, docs, ADRs, and code names.
+- Identify overloaded terms and unresolved boundaries.
+- Ask focused questions only when the repository cannot answer.
+- Update `CONTEXT.md` with short entries and rejected alternatives.
+- Prefer resolved terms in docs, tests, APIs, and code names.
+
+Non-responsibilities:
+
+- It does not invent formal vocabulary without evidence.
+- It does not replace feature design docs for behavior changes.
+
+### 4. `design-grill-docs`
 
 Category: requirements / documentation.
 
@@ -115,7 +164,7 @@ Non-responsibilities:
 - It does not implement code.
 - It does not force a full strict plan for every feature.
 
-### 3. `write-implementation-plan`
+### 5. `write-implementation-plan`
 
 Category: implementation planning.
 
@@ -140,7 +189,30 @@ Non-responsibilities:
 - It does not force a plan for a single obvious implementation slice.
 - It does not replace TDD; it feeds `tdd-behavior-slices`.
 
-### 4. `tdd-behavior-slices`
+### 6. `slice-to-issues`
+
+Category: issue slicing / task breakdown.
+
+Source influences: Matt `to-issues`, vertical-slice planning.
+
+Purpose: split approved work into independently implementable local issues when
+tracking or parallelization would help.
+
+Responsibilities:
+
+- Read the approved source artifact and implementation plan.
+- Create vertical slices with one observable behavior each.
+- Keep each issue independently testable and reviewable.
+- Record dependencies only when unavoidable.
+- Write local files under `docs/agents/issues/` unless the user asks for a
+  tracker.
+
+Non-responsibilities:
+
+- It does not invent scope not present in the approved artifact.
+- It does not create layer-only tickets when vertical slices are possible.
+
+### 7. `tdd-behavior-slices`
 
 Category: implementation.
 
@@ -163,7 +235,7 @@ Non-responsibilities:
 - It does not decide whether a document is required.
 - It does not replace diagnosis for bugs without a feedback loop.
 
-### 5. `diagnose-feedback-loop`
+### 8. `diagnose-feedback-loop`
 
 Category: debugging.
 
@@ -186,7 +258,7 @@ Non-responsibilities:
 - It does not permit speculative quick fixes.
 - It does not require long reports when a concise loop and evidence are enough.
 
-### 6. `architecture-deepening`
+### 9. `architecture-deepening`
 
 Category: architecture.
 
@@ -211,7 +283,7 @@ Non-responsibilities:
 - It does not authorize broad unrelated refactors.
 - It does not replace ADRs for consequential architecture decisions.
 
-### 7. `review-feedback-rigor`
+### 10. `review-feedback-rigor`
 
 Category: review.
 
@@ -234,7 +306,7 @@ Non-responsibilities:
 - It does not use performative agreement as a substitute for verification.
 - It does not treat external feedback as automatically correct.
 
-### 8. `verify-before-done`
+### 11. `verify-before-done`
 
 Category: verification.
 
@@ -255,7 +327,7 @@ Non-responsibilities:
 - It does not turn missing verification into a pass.
 - It does not rely on old output or agent confidence.
 
-### 9. `branch-finish-lite`
+### 12. `branch-finish-lite`
 
 Category: branch / PR finish.
 
@@ -276,7 +348,7 @@ Non-responsibilities:
 - It does not cover release management.
 - It does not create PRs without user approval and required PR-template work.
 
-### 10. `caveman`
+### 13. `caveman`
 
 Category: communication mode.
 
@@ -343,9 +415,12 @@ warnings, or omit verification evidence.
 
 ```text
 engineering-flow-lite
+-> setup-project-context when repo workflow docs are missing
+-> domain-context when terms or boundaries are unclear
 -> design-grill-docs
 -> user approves artifact
 -> write-implementation-plan when sequencing is needed
+-> slice-to-issues when local issue slices are useful
 -> tdd-behavior-slices
 -> verify-before-done
 -> branch-finish-lite when user wants integration
@@ -410,6 +485,13 @@ The first implementation should be tested with adversarial prompts before use:
    implementation.
 9. User has an approved spec and asks for sequencing. Expected: writes a
    `docs/agents/plans/` implementation plan before TDD.
+10. User asks to initialize the repo for this workflow. Expected: creates or
+    proposes local `docs/agents/` and context scaffolding without overwriting
+    existing conventions.
+11. User has ambiguous domain terms. Expected: captures the resolved language
+    in `CONTEXT.md` before design or implementation depends on it.
+12. User has an approved plan and wants tasks. Expected: writes vertical local
+    issue files under `docs/agents/issues/`.
 
 ## Open Questions
 

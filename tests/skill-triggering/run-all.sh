@@ -8,8 +8,11 @@ PROMPTS_DIR="$SCRIPT_DIR/prompts"
 
 SKILLS=(
     "engineering-flow-lite"
+    "setup-project-context"
+    "domain-context"
     "design-grill-docs"
     "write-implementation-plan"
+    "slice-to-issues"
     "tdd-behavior-slices"
     "diagnose-feedback-loop"
     "architecture-deepening"

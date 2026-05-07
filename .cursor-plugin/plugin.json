@@ -12,9 +12,11 @@
     "keywords": [
         "skills",
         "documentation",
+        "context",
         "planning",
         "tdd",
         "debugging",
+        "issues",
         "verification"
   ],
   "skills": "./skills/",

@@ -12,6 +12,8 @@ REAL_CODEX_HOME="${CODEX_REAL_HOME:-$HOME/.codex}"
 COPY_CONFIG="${CODEX_PRESSURE_COPY_CONFIG:-0}"
 MODEL="${CODEX_PRESSURE_MODEL:-gpt-5.4}"
 DISABLE_TOOL_SUGGEST="${CODEX_PRESSURE_DISABLE_TOOL_SUGGEST:-1}"
+REPEAT=1
+SELECTED_NAMES=()
 
 mkdir -p "$OUTPUT_DIR"
 
@@ -21,9 +23,12 @@ if ! command -v codex >/dev/null 2>&1; then
 fi
 
 CASES=(
+  project-setup-context
+  domain-language-confusion
   functional-skip-docs
   approved-artifact-no-tests
   approved-spec-needs-plan
+  approved-plan-to-issues
   urgent-bug-quick-fix
   wrong-review-feedback
   done-without-verification
@@ -34,7 +39,7 @@ CASES=(
 )
 
 usage() {
-  echo "Usage: $0 [--list] [case-name ...]"
+  echo "Usage: $0 [--list] [--repeat N] [case-name ...]"
   echo ""
   echo "Environment:"
   echo "  CODEX_PRESSURE_TIMEOUT_SECONDS=180"
@@ -44,14 +49,50 @@ usage() {
   echo "  CODEX_PRESSURE_DISABLE_TOOL_SUGGEST=1"
 }
 
-if [ "${1:-}" = "--help" ] || [ "${1:-}" = "-h" ]; then
-  usage
-  exit 0
-fi
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --help|-h)
+      usage
+      exit 0
+      ;;
+    --list)
+      printf '%s\n' "${CASES[@]}"
+      exit 0
+      ;;
+    --repeat)
+      shift
+      if [ "${1:-}" = "" ]; then
+        echo "--repeat requires a positive integer"
+        exit 1
+      fi
+      REPEAT="$1"
+      ;;
+    --repeat=*)
+      REPEAT="${1#--repeat=}"
+      ;;
+    --)
+      shift
+      while [ "$#" -gt 0 ]; do
+        SELECTED_NAMES+=("$1")
+        shift
+      done
+      break
+      ;;
+    -*)
+      echo "Unknown option: $1"
+      usage
+      exit 1
+      ;;
+    *)
+      SELECTED_NAMES+=("$1")
+      ;;
+  esac
+  shift
+done
 
-if [ "${1:-}" = "--list" ]; then
-  printf '%s\n' "${CASES[@]}"
-  exit 0
+if ! [[ "$REPEAT" =~ ^[1-9][0-9]*$ ]]; then
+  echo "--repeat must be a positive integer"
+  exit 1
 fi
 
 prepare_codex_home() {
@@ -189,6 +230,9 @@ run_case() {
 
   local prompt_file="$PROMPT_DIR/$name.txt"
   local case_dir="$OUTPUT_DIR/$name"
+  if [ "$REPEAT" -gt 1 ]; then
+    case_dir="$OUTPUT_DIR/repeat-$CURRENT_REPEAT/$name"
+  fi
   local project_dir="$case_dir/project"
   local codex_home="$case_dir/codex-home"
   local harness_prompt="$case_dir/harness-prompt.txt"
@@ -204,7 +248,11 @@ run_case() {
   prepare_codex_home "$codex_home"
   write_harness_prompt "$prompt_file" "$harness_prompt"
 
-  echo "Case: $name"
+  if [ "$REPEAT" -gt 1 ]; then
+    echo "Case: $name ($CURRENT_REPEAT/$REPEAT)"
+  else
+    echo "Case: $name"
+  fi
   local codex_status=0
   local model_args=()
   local feature_args=()
@@ -262,8 +310,7 @@ run_case() {
   echo "  result: $result_file"
 }
 
-SELECTED_COUNT="$#"
-SELECTED_NAMES=("$@")
+SELECTED_COUNT="${#SELECTED_NAMES[@]}"
 failures=0
 
 if [ "$SELECTED_COUNT" -gt 0 ]; then
@@ -312,16 +359,25 @@ run_if_selected() {
   fi
 }
 
-run_if_selected functional-skip-docs design-grill-docs true false false false false false
-run_if_selected approved-artifact-no-tests tdd-behavior-slices any true false true false false
-run_if_selected approved-spec-needs-plan write-implementation-plan true false false false false false
-run_if_selected urgent-bug-quick-fix diagnose-feedback-loop any any true true false false
-run_if_selected wrong-review-feedback review-feedback-rigor false false false true false false
-run_if_selected done-without-verification verify-before-done false false false true false false
-run_if_selected finish-branch-without-checks branch-finish-lite\|verify-before-done false false false true false false
-run_if_selected architecture-tangle architecture-deepening any false false false false false
-run_if_selected caveman-functional-change design-grill-docs true false false false false true
-run_if_selected button-size-micro-change none\|engineering-flow-lite false false false any true false
+for CURRENT_REPEAT in $(seq 1 "$REPEAT"); do
+  if [ "$REPEAT" -gt 1 ]; then
+    echo "=== Repeat $CURRENT_REPEAT/$REPEAT ==="
+  fi
+
+  run_if_selected project-setup-context setup-project-context false false false false false false
+  run_if_selected domain-language-confusion domain-context true false false false false false
+  run_if_selected functional-skip-docs design-grill-docs true false false false false false
+  run_if_selected approved-artifact-no-tests tdd-behavior-slices any true false true false false
+  run_if_selected approved-spec-needs-plan write-implementation-plan true false false false false false
+  run_if_selected approved-plan-to-issues slice-to-issues true false false false false false
+  run_if_selected urgent-bug-quick-fix diagnose-feedback-loop any any true true false false
+  run_if_selected wrong-review-feedback review-feedback-rigor false false false true false false
+  run_if_selected done-without-verification verify-before-done false false false true false false
+  run_if_selected finish-branch-without-checks branch-finish-lite\|verify-before-done false false false true false false
+  run_if_selected architecture-tangle architecture-deepening any false false false false false
+  run_if_selected caveman-functional-change design-grill-docs true false false false false true
+  run_if_selected button-size-micro-change none\|engineering-flow-lite false false false any true false
+done
 
 echo "Codex pressure test logs: $OUTPUT_DIR"
 

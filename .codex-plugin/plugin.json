@@ -11,8 +11,10 @@
   "keywords": [
     "skills",
     "documentation",
+    "context",
     "tdd",
     "debugging",
+    "issues",
     "verification",
     "workflow"
   ],
@@ -20,7 +22,7 @@
   "interface": {
     "displayName": "My Skills",
     "shortDescription": "Documented lightweight development workflow for coding agents",
-    "longDescription": "Use My Skills to route engineering work through lightweight documentation, implementation planning, behavior-first TDD, disciplined diagnosis, review feedback rigor, fresh verification, and concise communication.",
+    "longDescription": "Use My Skills to route engineering work through project context setup, domain language capture, lightweight documentation, implementation planning, local issue slicing, behavior-first TDD, disciplined diagnosis, review feedback rigor, fresh verification, and concise communication.",
     "developerName": "oyzg",
     "category": "Coding",
     "capabilities": [

@@ -1,0 +1,1 @@
+Please use setup-project-context to initialize this repository's docs/agents workflow conventions.

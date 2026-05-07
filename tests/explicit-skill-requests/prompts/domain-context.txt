@@ -1,0 +1,1 @@
+Please use domain-context to clarify and document the product terms before implementation.

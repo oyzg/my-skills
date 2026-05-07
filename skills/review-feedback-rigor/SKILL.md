@@ -19,6 +19,8 @@ Review feedback is input to evaluate, not an order to obey blindly.
 6. Implement valid feedback one item at a time.
 7. Test each meaningful change.
 
+See `REFERENCE.md` for feedback classes and response shape.
+
 ## Push Back When
 
 - The suggestion breaks existing behavior.
