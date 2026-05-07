@@ -8,12 +8,13 @@ quality gates with Matt Pocock's smaller, composable engineering skills.
 The first version covers the development loop only: set up project context,
 clarify domain language, clarify work, write the right document, write
 implementation plans when sequencing is needed, split approved work into local
-issues when useful, implement with tests, diagnose failures, handle review,
-verify completion, and finish the branch. It is Codex-first: the required
-runtime contract is the Codex plugin manifest plus `skills/*/SKILL.md`. Claude,
-Cursor, Gemini, and OpenCode files are compatibility surfaces. It does not
-cover release management, CI repair as a standalone workflow, migrations, or
-production incidents.
+issues when useful, coordinate optional subagents for large independent work,
+implement with tests, diagnose failures, handle review, verify completion, and
+finish the branch. It is Codex-first: the required runtime contract is the
+Codex plugin manifest plus `skills/*/SKILL.md`. Claude, Cursor, Gemini, and
+OpenCode files are compatibility surfaces. It does not cover release
+management, CI repair as a standalone workflow, migrations, or production
+incidents.
 
 ## Problem
 
@@ -42,6 +43,8 @@ full-process load for ordinary feature implementation.
 7. Caveman mode compresses communication only; it never removes required gates.
 8. Domain language and project workflow conventions belong in shared context,
    not repeated chat explanations.
+9. Subagents are optional coordination tools for large independent work, not a
+   default implementation mode.
 
 ## Weight Target
 
@@ -212,7 +215,36 @@ Non-responsibilities:
 - It does not invent scope not present in the approved artifact.
 - It does not create layer-only tickets when vertical slices are possible.
 
-### 7. `tdd-behavior-slices`
+### 7. `subagent-coordination`
+
+Category: delegation / coordination.
+
+Source influences: legacy subagent discipline, Matt's small composable skill
+style, Codex's explicit subagent authorization model.
+
+Purpose: coordinate optional subagents for approved large work when independent
+ownership makes parallel work cheaper than doing it serially.
+
+Responsibilities:
+
+- Require an approved artifact or plan before delegation.
+- Use subagents only when the user explicitly asks for them or approves a
+  proposed delegation split.
+- Keep the main session on the critical path.
+- Delegate only sidecar tasks with disjoint file or module ownership.
+- Give each subagent a bounded task packet with ownership, forbidden files,
+  expected tests, and coordination warnings.
+- Review returned patches before integration.
+- Run combined verification through `verify-before-done`.
+
+Non-responsibilities:
+
+- It does not automatically spawn subagents for every large feature.
+- It does not delegate the immediate blocker for the main session.
+- It does not let subagents skip documentation, TDD, diagnosis, review, or
+  verification gates.
+
+### 8. `tdd-behavior-slices`
 
 Category: implementation.
 
@@ -235,7 +267,7 @@ Non-responsibilities:
 - It does not decide whether a document is required.
 - It does not replace diagnosis for bugs without a feedback loop.
 
-### 8. `diagnose-feedback-loop`
+### 9. `diagnose-feedback-loop`
 
 Category: debugging.
 
@@ -258,7 +290,7 @@ Non-responsibilities:
 - It does not permit speculative quick fixes.
 - It does not require long reports when a concise loop and evidence are enough.
 
-### 9. `architecture-deepening`
+### 10. `architecture-deepening`
 
 Category: architecture.
 
@@ -283,7 +315,7 @@ Non-responsibilities:
 - It does not authorize broad unrelated refactors.
 - It does not replace ADRs for consequential architecture decisions.
 
-### 10. `review-feedback-rigor`
+### 11. `review-feedback-rigor`
 
 Category: review.
 
@@ -306,7 +338,7 @@ Non-responsibilities:
 - It does not use performative agreement as a substitute for verification.
 - It does not treat external feedback as automatically correct.
 
-### 11. `verify-before-done`
+### 12. `verify-before-done`
 
 Category: verification.
 
@@ -327,7 +359,7 @@ Non-responsibilities:
 - It does not turn missing verification into a pass.
 - It does not rely on old output or agent confidence.
 
-### 12. `branch-finish-lite`
+### 13. `branch-finish-lite`
 
 Category: branch / PR finish.
 
@@ -348,7 +380,7 @@ Non-responsibilities:
 - It does not cover release management.
 - It does not create PRs without user approval and required PR-template work.
 
-### 13. `caveman`
+### 14. `caveman`
 
 Category: communication mode.
 
@@ -421,6 +453,7 @@ engineering-flow-lite
 -> user approves artifact
 -> write-implementation-plan when sequencing is needed
 -> slice-to-issues when local issue slices are useful
+-> subagent-coordination when approved large work has independent ownership
 -> tdd-behavior-slices
 -> verify-before-done
 -> branch-finish-lite when user wants integration
@@ -492,6 +525,9 @@ The first implementation should be tested with adversarial prompts before use:
     in `CONTEXT.md` before design or implementation depends on it.
 12. User has an approved plan and wants tasks. Expected: writes vertical local
     issue files under `docs/agents/issues/`.
+13. User explicitly asks to use subagents for a large approved feature.
+    Expected: selects only independent sidecar tasks, defines ownership, and
+    keeps the main session on the critical path.
 
 ## Open Questions
 

@@ -6,10 +6,11 @@ agents.
 This plugin combines a small router skill with focused engineering workflows:
 functional work gets written decisions and executable plans when needed,
 domain language is captured, approved work can be sliced into local issues,
-bugs get diagnosis before patches, behavior changes get TDD, review feedback
-gets checked, and completion claims need fresh evidence. Core `SKILL.md` files
-stay short; high-value workflows include templates or references that Codex
-loads only when needed.
+large approved work can use subagents when ownership is independent, bugs get
+diagnosis before patches, behavior changes get TDD, review feedback gets
+checked, and completion claims need fresh evidence. Core `SKILL.md` files stay
+short; high-value workflows include templates or references that Codex loads
+only when needed.
 
 ## Primary Target
 
@@ -26,6 +27,7 @@ Claude, Cursor, Gemini, and OpenCode metadata are compatibility layers.
 | `design-grill-docs` | Clarify functional work and write docs |
 | `write-implementation-plan` | Turn approved docs into executable plans |
 | `slice-to-issues` | Split approved work into local vertical-slice issues |
+| `subagent-coordination` | Coordinate optional subagents for large independent work |
 | `tdd-behavior-slices` | Implement behavior through vertical TDD |
 | `diagnose-feedback-loop` | Diagnose bugs with feedback loops |
 | `architecture-deepening` | Improve structure where current work needs it |
@@ -53,6 +55,7 @@ engineering-flow-lite
 -> user approves artifact
 -> write-implementation-plan when sequencing is needed
 -> slice-to-issues when local issue slices are useful
+-> subagent-coordination when approved large work has independent ownership
 -> tdd-behavior-slices
 -> verify-before-done
 -> branch-finish-lite when integration is needed
@@ -111,8 +114,8 @@ tests/codex/run-pressure-tests.sh --repeat 3
 The Codex runner uses `codex exec --ephemeral` with a temporary `CODEX_HOME`.
 It copies local Codex CLI authentication, then points that home's `skills/`
 directory at this working tree. It checks routing decisions for setup, domain
-context, docs, planning, issue slicing, TDD, diagnosis, review, verification,
-branch finish, architecture, and caveman gates. Set
+context, docs, planning, issue slicing, subagent coordination, TDD, diagnosis,
+review, verification, branch finish, architecture, and caveman gates. Set
 `CODEX_PRESSURE_COPY_CONFIG=1` only when the default Codex CLI configuration is
 insufficient. The runner defaults to
 `CODEX_PRESSURE_MODEL=gpt-5.4` because older Codex CLI builds may reject newer

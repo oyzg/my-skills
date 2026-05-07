@@ -13,6 +13,7 @@ SKILLS=(
     "design-grill-docs"
     "write-implementation-plan"
     "slice-to-issues"
+    "subagent-coordination"
     "tdd-behavior-slices"
     "diagnose-feedback-loop"
     "architecture-deepening"

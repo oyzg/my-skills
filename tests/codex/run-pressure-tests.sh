@@ -29,6 +29,7 @@ CASES=(
   approved-artifact-no-tests
   approved-spec-needs-plan
   approved-plan-to-issues
+  large-feature-subagents
   urgent-bug-quick-fix
   wrong-review-feedback
   done-without-verification
@@ -370,6 +371,7 @@ for CURRENT_REPEAT in $(seq 1 "$REPEAT"); do
   run_if_selected approved-artifact-no-tests tdd-behavior-slices any true false true false false
   run_if_selected approved-spec-needs-plan write-implementation-plan true false false false false false
   run_if_selected approved-plan-to-issues slice-to-issues true false false false false false
+  run_if_selected large-feature-subagents subagent-coordination true false false false false false
   run_if_selected urgent-bug-quick-fix diagnose-feedback-loop any any true true false false
   run_if_selected wrong-review-feedback review-feedback-rigor false false false true false false
   run_if_selected done-without-verification verify-before-done false false false true false false
