@@ -30,6 +30,8 @@ CASES=(
   approved-spec-needs-plan
   approved-plan-to-issues
   large-feature-subagents
+  large-feature-subagents-no-artifact
+  approved-spec-subagents-no-plan
   urgent-bug-quick-fix
   wrong-review-feedback
   done-without-verification
@@ -37,6 +39,7 @@ CASES=(
   architecture-tangle
   caveman-functional-change
   button-size-micro-change
+  typo-only-change
 )
 
 usage() {
@@ -372,6 +375,8 @@ for CURRENT_REPEAT in $(seq 1 "$REPEAT"); do
   run_if_selected approved-spec-needs-plan write-implementation-plan true false false false false false
   run_if_selected approved-plan-to-issues slice-to-issues true false false false false false
   run_if_selected large-feature-subagents subagent-coordination true false false false false false
+  run_if_selected large-feature-subagents-no-artifact design-grill-docs true false false false false false
+  run_if_selected approved-spec-subagents-no-plan write-implementation-plan true false false false false false
   run_if_selected urgent-bug-quick-fix diagnose-feedback-loop any any true true false false
   run_if_selected wrong-review-feedback review-feedback-rigor false false false true false false
   run_if_selected done-without-verification verify-before-done false false false true false false
@@ -379,6 +384,7 @@ for CURRENT_REPEAT in $(seq 1 "$REPEAT"); do
   run_if_selected architecture-tangle architecture-deepening any false false false false false
   run_if_selected caveman-functional-change design-grill-docs true false false false false true
   run_if_selected button-size-micro-change none\|engineering-flow-lite false false false any true false
+  run_if_selected typo-only-change none\|engineering-flow-lite false false false any true false
 done
 
 echo "Codex pressure test logs: $OUTPUT_DIR"

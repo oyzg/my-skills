@@ -91,6 +91,10 @@ engineering-flow-lite
 | ADR | `docs/adr/NNNN-title.md` | Hard to reverse, surprising, trade-off driven |
 | Domain context | `CONTEXT.md` | Domain term or boundary is resolved |
 
+Concrete examples live in `docs/agents/examples/`. Use them to calibrate the
+expected detail level for context docs, design notes, specs, plans, local
+issues, and subagent delegation packets.
+
 ## Testing
 
 Codex structural validation:
@@ -113,9 +117,10 @@ tests/codex/run-pressure-tests.sh --repeat 3
 
 The Codex runner uses `codex exec --ephemeral` with a temporary `CODEX_HOME`.
 It copies local Codex CLI authentication, then points that home's `skills/`
-directory at this working tree. It checks routing decisions for setup, domain
-context, docs, planning, issue slicing, subagent coordination, TDD, diagnosis,
-review, verification, branch finish, architecture, and caveman gates. Set
+directory at this working tree. It checks routing decisions for positive and
+negative cases across setup, domain context, docs, planning, issue slicing,
+subagent coordination, TDD, diagnosis, review, verification, branch finish,
+architecture, and caveman gates. Set
 `CODEX_PRESSURE_COPY_CONFIG=1` only when the default Codex CLI configuration is
 insufficient. The runner defaults to
 `CODEX_PRESSURE_MODEL=gpt-5.4` because older Codex CLI builds may reject newer

@@ -41,6 +41,8 @@ for workflows where Codex benefits from concrete structure.
 8. Add Codex-first behavior pressure tests that mount the local `skills/`
    directory in an isolated `CODEX_HOME` and validate the agent's routing
    decisions with structured output.
+9. Add concrete `docs/agents/examples/` artifacts to calibrate the expected
+   detail level beyond templates.
 
 ## Verification Notes
 
@@ -81,11 +83,12 @@ tests/codex/run-pressure-tests.sh --repeat 3
 The Codex runner uses `codex exec --ephemeral` and a temporary `CODEX_HOME`.
 It copies local Codex CLI authentication, then points `skills/` at this working
 tree. Each case asks Codex to choose the smallest applicable workflow and
-returns JSON checked by the test script. These tests cover setup, domain
-context, docs, planning, issue slicing, subagent coordination, TDD, diagnosis,
-review, verification, branch finish, architecture, and caveman gates. Full
-Codex config copying is opt-in through `CODEX_PRESSURE_COPY_CONFIG=1` so global
-plugin settings do not pollute the pressure-test environment by default.
+returns JSON checked by the test script. These tests cover positive and
+negative cases across setup, domain context, docs, planning, issue slicing,
+subagent coordination, TDD, diagnosis, review, verification, branch finish,
+architecture, and caveman gates. Full Codex config copying is opt-in through
+`CODEX_PRESSURE_COPY_CONFIG=1` so global plugin settings do not pollute the
+pressure-test environment by default.
 The runner defaults to `CODEX_PRESSURE_MODEL=gpt-5.4` to avoid failing on local
 Codex CLI builds that do not yet support newer configured models.
 It disables tool suggestions by default so connector-directory network failures

@@ -537,6 +537,12 @@ The first implementation should be tested with adversarial prompts before use:
 13. User explicitly asks to use subagents for a large approved feature.
     Expected: selects only independent sidecar tasks, defines ownership, and
     keeps the main session on the critical path.
+14. User asks for subagents on a large feature with no approved artifact.
+    Expected: routes to documentation first, not subagent coordination.
+15. User has an approved spec but no implementation plan and asks for
+    subagents. Expected: writes a plan first, not subagent coordination.
+16. User requests a typo-only change. Expected: no document required and
+    direct targeted verification is allowed.
 
 ## Open Questions
 

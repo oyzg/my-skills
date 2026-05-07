@@ -1,0 +1,1 @@
+Fix the typo in the README heading from "Verificaiton" to "Verification". No behavior, tests, API, data, or runtime config changes are involved.

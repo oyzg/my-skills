@@ -84,9 +84,26 @@ required_support_files=(
   "skills/write-implementation-plan/templates/implementation-plan.md"
 )
 
+required_example_files=(
+  "docs/agents/examples/context.md"
+  "docs/agents/examples/implementation-plan.md"
+  "docs/agents/examples/level-1-design-note.md"
+  "docs/agents/examples/level-2-spec.md"
+  "docs/agents/examples/local-issue.md"
+  "docs/agents/examples/subagent-delegation.md"
+)
+
 for file in "${required_support_files[@]}"; do
   if [ ! -s "$file" ]; then
     echo "Missing or empty support file: $file"
+    exit 1
+  fi
+done
+
+echo "Validating agent examples..."
+for file in "${required_example_files[@]}"; do
+  if [ ! -s "$file" ]; then
+    echo "Missing or empty example file: $file"
     exit 1
   fi
 done
