@@ -39,7 +39,7 @@ same skill set can be adapted without changing the skill content.
 | `engineering-flow-lite` | Starting engineering work or choosing the correct workflow |
 | `setup-project-context` | Setting up repo-level docs, context, and agent conventions |
 | `domain-context` | Clarifying project terms, boundaries, and shared language |
-| `design-grill-docs` | Creating or changing functional behavior before implementation |
+| `design-grill-docs` | Interviewing unclear functional work, then writing the right artifact before implementation |
 | `write-implementation-plan` | Turning an approved artifact into ordered implementation steps |
 | `slice-to-issues` | Splitting approved work into independently reviewable local issues |
 | `subagent-coordination` | Coordinating optional subagents for large independent work |

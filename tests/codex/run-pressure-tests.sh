@@ -26,6 +26,7 @@ CASES=(
   project-setup-context
   domain-language-confusion
   functional-skip-docs
+  ambiguous-feature-grill
   approved-artifact-no-tests
   approved-spec-needs-plan
   approved-plan-to-issues
@@ -378,6 +379,7 @@ for CURRENT_REPEAT in $(seq 1 "$REPEAT"); do
   run_if_selected project-setup-context setup-project-context false false false false false false false
   run_if_selected domain-language-confusion domain-context true false false false false false false
   run_if_selected functional-skip-docs design-grill-docs true false false false false false false
+  run_if_selected ambiguous-feature-grill design-grill-docs true false false false false false false
   run_if_selected approved-artifact-no-tests tdd-behavior-slices any true false true false false false
   run_if_selected approved-spec-needs-plan write-implementation-plan true false false false false false false
   run_if_selected approved-plan-to-issues slice-to-issues true false false false false false false

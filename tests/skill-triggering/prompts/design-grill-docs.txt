@@ -1,1 +1,3 @@
-Let's add account export behavior. We need to clarify what gets exported and write the right design note before implementation.
+Let's add account export behavior. It should probably include profile data,
+settings, and maybe audit history, but I am not sure what format it should use
+or who is allowed to download it.

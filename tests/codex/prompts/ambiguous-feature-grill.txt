@@ -1,0 +1,3 @@
+Add team invitation support. I am not sure yet whether invitations should expire,
+whether pending invites should count toward seat limits, or what happens when
+the invited email already belongs to another workspace.
