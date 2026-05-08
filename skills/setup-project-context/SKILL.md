@@ -9,6 +9,10 @@ description: Use when setting up a repository to use My Skills, choosing docs/ag
 
 Create the small project scaffolding that the other skills assume.
 
+## Visibility
+
+Start with one concise line naming this skill and why.
+
 ## Process
 
 1. Inspect existing project instructions and docs.

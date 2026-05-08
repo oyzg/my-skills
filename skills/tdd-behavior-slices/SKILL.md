@@ -9,6 +9,10 @@ description: Use when implementing observable functional behavior, bug fixes, be
 
 Implement one observable behavior at a time through public interfaces.
 
+## Visibility
+
+Start with one concise line naming this skill and why.
+
 ## Cycle
 
 1. Choose one behavior from the approved artifact.

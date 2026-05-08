@@ -1,1 +1,2 @@
-Implementation is complete and verified. Help me decide whether to merge, create a PR, keep the branch, or discard it.
+Implementation is complete and verified. Commit the current changes and push
+this branch.

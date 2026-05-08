@@ -1,6 +1,6 @@
 ---
 name: branch-finish-lite
-description: Use when implementation is complete and the user needs merge, pull request, keep-branch, discard, or branch cleanup options
+description: Use when implementation is complete and the user needs commit, push, merge, pull request, keep-branch, discard, or branch cleanup options
 ---
 
 # Branch Finish Lite
@@ -9,13 +9,26 @@ description: Use when implementation is complete and the user needs merge, pull 
 
 Finish verified development work without hiding risk.
 
+## Visibility
+
+Start with one concise line naming this skill and why.
+
+Example:
+
+```text
+Using branch-finish-lite: handling commit/push after verification.
+```
+
 ## Process
 
 1. Use `verify-before-done` first.
 2. Detect current branch and workspace type.
-3. Present options: merge locally, push/create PR, keep branch, discard.
-4. Require explicit confirmation before discard.
-5. Preserve worktree when creating a PR.
+3. For explicit commit or push requests, do the requested action after checking
+   status and relevant verification evidence.
+4. For open-ended finish requests, present options: merge locally, push/create
+   PR, keep branch, discard.
+5. Require explicit confirmation before discard.
+6. Preserve worktree when creating a PR.
 
 ## Options
 

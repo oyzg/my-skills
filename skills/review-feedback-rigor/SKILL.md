@@ -9,6 +9,10 @@ description: Use when receiving code review feedback, requested changes, reviewe
 
 Review feedback is input to evaluate, not an order to obey blindly.
 
+## Visibility
+
+Start with one concise line naming this skill and why.
+
 ## Process
 
 1. Read all feedback before acting.

@@ -10,6 +10,10 @@ description: Use when the user explicitly asks for subagents, parallel agents, d
 Use subagents for large work only when they reduce coordination cost. They are
 best for independent slices with clear ownership, not for urgent blocking work.
 
+## Visibility
+
+Start with one concise line naming this skill and why.
+
 ## Preconditions
 
 - A Level 2/3 artifact or approved implementation plan exists.

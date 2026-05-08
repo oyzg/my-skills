@@ -1,7 +1,7 @@
 {
   "name": "my-skills",
   "version": "0.1.0",
-  "description": "A lightweight documented engineering workflow for coding agents.",
+  "description": "A visible documented engineering workflow for coding agents.",
   "author": {
     "name": "oyzg"
   },
@@ -22,8 +22,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "My Skills",
-    "shortDescription": "Documented lightweight development workflow for coding agents",
-    "longDescription": "Use My Skills to route engineering work through project context setup, domain language capture, lightweight documentation, implementation planning, local issue slicing, optional subagent coordination, behavior-first TDD, disciplined diagnosis, review feedback rigor, fresh verification, and concise communication.",
+    "shortDescription": "Visible documented development workflow for coding agents",
+    "longDescription": "Use My Skills to visibly route coding-session work through project context setup, domain language capture, lightweight documentation, implementation planning, local issue slicing, optional subagent coordination, behavior-first TDD, disciplined diagnosis, review feedback rigor, fresh verification, branch finish, and concise communication.",
     "developerName": "oyzg",
     "category": "Coding",
     "capabilities": [

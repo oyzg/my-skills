@@ -11,6 +11,10 @@ Clarify functional work, challenge assumptions against code and domain docs,
 interview the user until the important decision branches are resolved, then
 write the smallest sufficient artifact before implementation.
 
+## Visibility
+
+Start with one concise line naming this skill and why.
+
 ## Process
 
 1. Inspect existing code and docs before asking questions.

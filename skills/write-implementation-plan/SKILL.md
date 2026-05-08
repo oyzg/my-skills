@@ -9,6 +9,10 @@ description: Use when an approved design note, spec, PRD, ADR, or requirements a
 
 Turn an approved artifact into a small executable plan.
 
+## Visibility
+
+Start with one concise line naming this skill and why.
+
 ## When To Use
 
 Use after `design-grill-docs` when work needs sequencing, multiple steps,

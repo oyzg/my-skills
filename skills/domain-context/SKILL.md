@@ -9,6 +9,10 @@ description: Use when domain terms, business concepts, naming, boundaries, ubiqu
 
 Turn repeated explanations into shared language.
 
+## Visibility
+
+Start with one concise line naming this skill and why.
+
 ## When To Use
 
 Use before design or implementation when project terms are ambiguous, overloaded,

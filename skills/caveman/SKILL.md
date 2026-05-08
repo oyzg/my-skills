@@ -9,6 +9,10 @@ description: Use when the user asks for caveman mode, fewer tokens, terse respon
 
 Compress communication. Keep technical accuracy.
 
+## Visibility
+
+Start with one concise line naming this skill and why.
+
 ## Rules
 
 - Short fragments are allowed.

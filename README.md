@@ -36,7 +36,7 @@ same skill set can be adapted without changing the skill content.
 
 | Skill | When it applies |
 | --- | --- |
-| `engineering-flow-lite` | Starting engineering work or choosing the correct workflow |
+| `engineering-flow-lite` | Starting coding-session work or choosing the correct workflow |
 | `setup-project-context` | Setting up repo-level docs, context, and agent conventions |
 | `domain-context` | Clarifying project terms, boundaries, and shared language |
 | `design-grill-docs` | Interviewing unclear functional work, then writing the right artifact before implementation |
@@ -48,7 +48,7 @@ same skill set can be adapted without changing the skill content.
 | `architecture-deepening` | Improving structure when boundaries or test seams block the task |
 | `review-feedback-rigor` | Handling review feedback with verification and pushback when needed |
 | `verify-before-done` | Inspecting diff and fresh evidence before completion claims |
-| `branch-finish-lite` | Finishing verified branch work |
+| `branch-finish-lite` | Committing, pushing, or finishing verified branch work |
 | `caveman` | Compressing communication without skipping workflow gates |
 
 ## Core Rules
@@ -66,6 +66,10 @@ ownership.
 
 Completion claims require a quality gate: inspect the current diff, compare the
 change with the approved artifact or plan, and run fresh verification.
+
+When a skill is used, the agent should say so briefly before doing the work.
+The visible line is intentionally short, so users can tell the workflow is
+active without paying for a long explanation.
 
 ## Default Flow
 

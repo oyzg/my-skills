@@ -9,6 +9,10 @@ description: Use when an approved plan, spec, PRD, or TODO list needs to be brok
 
 Break approved work into independently grabbable vertical slices.
 
+## Visibility
+
+Start with one concise line naming this skill and why.
+
 ## Process
 
 1. Read the source artifact and implementation plan.

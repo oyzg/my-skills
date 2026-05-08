@@ -10,6 +10,10 @@ description: Use when about to claim work is done, fixed, passing, complete, rea
 Completion claims need a quality gate: inspect the diff, align it with the
 approved artifact, then produce fresh evidence.
 
+## Visibility
+
+Start with one concise line naming this skill and why.
+
 ## Gate
 
 Before any success claim:

@@ -1,6 +1,6 @@
 ---
 name: engineering-flow-lite
-description: Use when starting engineering work, deciding whether work needs docs, or routing feature, bug, architecture, review, verification, branch finish, or concise communication requests
+description: Use when starting coding-session work, including feature work, bug fixes, refactors, docs changes, repo cleanup, commits, pushes, branch finishing, verification, reviews, architecture, or deciding whether a task needs docs
 ---
 
 # Engineering Flow Lite
@@ -10,11 +10,23 @@ description: Use when starting engineering work, deciding whether work needs doc
 Route engineering work to the smallest useful workflow while preserving hard
 gates for documentation, diagnosis, TDD, review rigor, and verification.
 
+## Visibility
+
+Start with one concise line naming the route and why, then continue with the
+chosen workflow. Keep this visible even for micro-changes and git requests.
+
+Example:
+
+```text
+Using engineering-flow-lite: routing this README edit as a docs-only change.
+```
+
 ## Routing
 
 | Request | Use |
 | --- | --- |
 | Repository setup for docs/context | `setup-project-context` |
+| Documentation, README, metadata, or repo cleanup | `engineering-flow-lite`, then proceed if no functional gate applies |
 | Domain language, naming, or context confusion | `domain-context` |
 | Functional feature or behavior change | `design-grill-docs` |
 | Bug, failure, regression, unexpected behavior | `diagnose-feedback-loop` |
@@ -26,7 +38,7 @@ gates for documentation, diagnosis, TDD, review rigor, and verification.
 | Architecture concern or poor test seam | `architecture-deepening` |
 | Code review feedback | `review-feedback-rigor` |
 | Completion claim | `verify-before-done` |
-| Merge, PR, keep, discard | `branch-finish-lite` |
+| Commit, push, merge, PR, keep, discard | `branch-finish-lite` |
 | "caveman", "less tokens", "be brief" | `caveman` |
 
 ## Conflict Priority
@@ -35,7 +47,7 @@ When multiple rows match, choose the first applicable priority:
 
 1. `caveman` modifies communication only; it never changes the workflow route.
 2. `verify-before-done` handles any done/fixed/passing/ready claim before final response.
-3. `branch-finish-lite` handles merge, PR, push, keep, or discard only after verification.
+3. `branch-finish-lite` handles commit, merge, PR, push, keep, or discard only after verification.
 4. `review-feedback-rigor` handles external review comments before edits.
 5. `diagnose-feedback-loop` beats TDD when behavior is broken or unexplained.
 6. `setup-project-context` beats feature work when repo docs/context conventions are missing.
@@ -79,5 +91,5 @@ Stop and route instead if you are thinking:
 ## Output
 
 State the chosen route briefly, then follow the downstream skill. If no
-functional gate applies, explain that the work is a micro-change and proceed
-with targeted verification.
+functional gate applies, explain that the work is docs-only, cleanup-only, or a
+micro-change and proceed with targeted verification.

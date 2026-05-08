@@ -9,6 +9,10 @@ description: Use when bugs, failing tests, build failures, performance regressio
 
 Build a reliable pass/fail loop before fixing. Root cause first, patch second.
 
+## Visibility
+
+Start with one concise line naming this skill and why.
+
 ## Process
 
 1. Build the fastest available feedback loop: focused test, curl script, CLI fixture, browser script, trace replay, throwaway harness, fuzz loop, or bisect harness.

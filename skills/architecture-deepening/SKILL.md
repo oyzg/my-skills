@@ -9,6 +9,10 @@ description: Use when code structure, module boundaries, coupling, poor test sea
 
 Improve structure only where it serves the current task.
 
+## Visibility
+
+Start with one concise line naming this skill and why.
+
 ## Process
 
 1. Zoom out from the immediate file to related modules and flows.
