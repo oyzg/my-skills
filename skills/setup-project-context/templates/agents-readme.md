@@ -11,6 +11,7 @@ This directory contains agent-facing development artifacts.
 
 ## Rules
 
+- Coding-session work must start by applying `using-my-skills`.
 - Functional implementation needs an approved note, spec, or ADR first.
 - Multi-step work needs an implementation plan.
 - Each issue should describe one independently testable slice.

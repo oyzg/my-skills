@@ -23,7 +23,7 @@
   "interface": {
     "displayName": "My Skills",
     "shortDescription": "Visible documented development workflow for coding agents",
-    "longDescription": "Use My Skills to visibly route coding-session work through project context setup, domain language capture, lightweight documentation, implementation planning, local issue slicing, optional subagent coordination, behavior-first TDD, disciplined diagnosis, review feedback rigor, fresh verification, branch finish, and concise communication.",
+    "longDescription": "Use My Skills to visibly route coding-session work through the mandatory using-my-skills bootstrap, then project context setup, domain language capture, lightweight documentation, implementation planning, local issue slicing, optional subagent coordination, behavior-first TDD, disciplined diagnosis, review feedback rigor, fresh verification, branch finish, and concise communication.",
     "developerName": "oyzg",
     "category": "Coding",
     "capabilities": [

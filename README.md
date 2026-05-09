@@ -19,6 +19,10 @@ goal is to keep the important engineering gates in place:
 The suite is intentionally middleweight: more disciplined than a loose set of
 one-off prompts, but lighter than a full process framework.
 
+My Skills uses a Superpowers-style bootstrap: `using-my-skills` is the mandatory
+entry point for coding-session work. It classifies user intent first, then
+routes to the smallest downstream skill.
+
 ## Supported Agents
 
 | Agent | Status | Entry point |
@@ -36,7 +40,7 @@ same skill set can be adapted without changing the skill content.
 
 | Skill | When it applies |
 | --- | --- |
-| `engineering-flow-lite` | Starting coding-session work or choosing the correct workflow |
+| `using-my-skills` | Mandatory bootstrap router for coding-session work |
 | `setup-project-context` | Setting up repo-level docs, context, and agent conventions |
 | `domain-context` | Clarifying project terms, boundaries, and shared language |
 | `design-grill-docs` | Interviewing unclear functional work, then writing the right artifact before implementation |
@@ -74,7 +78,7 @@ active without paying for a long explanation.
 ## Default Flow
 
 ```text
-engineering-flow-lite
+using-my-skills
 -> setup-project-context when repo workflow docs are missing
 -> domain-context when terms or boundaries are unclear
 -> design-grill-docs
@@ -90,7 +94,7 @@ engineering-flow-lite
 Bug flow:
 
 ```text
-engineering-flow-lite
+using-my-skills
 -> diagnose-feedback-loop
 -> tdd-behavior-slices
 -> verify-before-done
@@ -99,7 +103,7 @@ engineering-flow-lite
 Review flow:
 
 ```text
-engineering-flow-lite
+using-my-skills
 -> review-feedback-rigor
 -> diagnose-feedback-loop or tdd-behavior-slices when needed
 -> verify-before-done
@@ -141,6 +145,17 @@ The script links `skills/*` into `${CODEX_HOME:-~/.codex}/skills`. Restart
 Codex after installing. Use `--force` only when intentionally replacing an
 existing non-symlink skill directory with the same name.
 
+For stable routing in each project, add the My Skills instructions to that
+project's `AGENTS.md`:
+
+```text
+At the start of any coding-session work, apply `using-my-skills` before
+acting.
+```
+
+The `setup-project-context` skill can create or update those project
+instructions for you.
+
 ### Claude Code
 
 Claude Code support is provided by:
@@ -149,7 +164,7 @@ Claude Code support is provided by:
 - `hooks/hooks.json`
 - `hooks/session-start`
 
-The session-start hook injects `engineering-flow-lite` as the routing bootstrap
+The session-start hook injects `using-my-skills` as the routing bootstrap
 so Claude Code starts with the same workflow discipline.
 
 For local compatibility testing:

@@ -7,8 +7,8 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PLUGIN_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
-# Read engineering-flow-lite content
-engineering_flow_content=$(cat "${PLUGIN_ROOT}/skills/engineering-flow-lite/SKILL.md" 2>&1 || echo "Error reading engineering-flow-lite skill")
+# Read using-my-skills content
+bootstrap_content=$(cat "${PLUGIN_ROOT}/skills/using-my-skills/SKILL.md" 2>&1 || echo "Error reading using-my-skills skill")
 
 # Escape string for JSON embedding using bash parameter substitution.
 # Each ${s//old/new} is a single C-level pass - orders of magnitude
@@ -23,8 +23,8 @@ escape_for_json() {
     printf '%s' "$s"
 }
 
-engineering_flow_escaped=$(escape_for_json "$engineering_flow_content")
-session_context="<EXTREMELY_IMPORTANT>\nYou have My Skills.\n\n**Below is the full content of your 'my-skills:engineering-flow-lite' skill - the router for this lightweight documented engineering workflow. For all other skills, use the 'Skill' tool:**\n\n${engineering_flow_escaped}\n</EXTREMELY_IMPORTANT>"
+bootstrap_escaped=$(escape_for_json "$bootstrap_content")
+session_context="<EXTREMELY_IMPORTANT>\nYou have My Skills.\n\n**Below is the full content of your 'my-skills:using-my-skills' skill - the mandatory bootstrap router for this lightweight documented engineering workflow. For all other skills, use the 'Skill' tool:**\n\n${bootstrap_escaped}\n</EXTREMELY_IMPORTANT>"
 
 # Output context injection as JSON.
 # Cursor hooks expect additional_context (snake_case).

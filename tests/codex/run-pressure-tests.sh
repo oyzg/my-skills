@@ -138,7 +138,8 @@ write_harness_prompt() {
     printf '%s\n' "Do not edit files, run commands, ask follow-up questions, or solve the task."
     printf '%s\n' "Treat the request below as the next user message in a coding session."
     printf '%s\n' "Use the available My Skills to decide the smallest correct next workflow."
-    printf '%s\n' "For route, choose the most specific skill to use next. Use engineering-flow-lite only when no downstream skill is more specific."
+    printf '%s\n' "In real sessions, using-my-skills is the mandatory bootstrap router before acting."
+    printf '%s\n' "For route, return the downstream skill selected by the bootstrap router. Use using-my-skills only when no downstream skill is more specific."
     printf '%s\n' "requires_document means a written artifact is required before implementation, even if the user asks to skip docs."
     printf '%s\n' "may_implement_now means production code changes may start immediately without violating the workflow gates."
     printf '%s\n' "may_delegate means subagents may be started now without violating documentation, planning, ownership, or critical-path gates."
@@ -393,8 +394,8 @@ for CURRENT_REPEAT in $(seq 1 "$REPEAT"); do
   run_if_selected finish-branch-without-checks branch-finish-lite\|verify-before-done false false false true false false false
   run_if_selected architecture-tangle architecture-deepening any false false false false false false
   run_if_selected caveman-functional-change design-grill-docs true false false false false false true
-  run_if_selected button-size-micro-change none\|engineering-flow-lite false false false any true false false
-  run_if_selected typo-only-change none\|engineering-flow-lite false false false any true false false
+  run_if_selected button-size-micro-change none\|using-my-skills false false false any true false false
+  run_if_selected typo-only-change none\|using-my-skills false false false any true false false
 done
 
 echo "Codex pressure test logs: $OUTPUT_DIR"

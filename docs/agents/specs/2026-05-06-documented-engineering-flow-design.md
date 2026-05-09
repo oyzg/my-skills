@@ -61,11 +61,12 @@ progressively loaded templates or references:
 
 ## Skill Set
 
-### 1. `engineering-flow-lite`
+### 1. `using-my-skills`
 
 Category: router / bootstrap.
 
-Purpose: decide which skill path applies and which document level is required.
+Purpose: mandatory bootstrap router that decides which skill path applies
+before acting.
 
 Responsibilities:
 
@@ -455,7 +456,7 @@ warnings, or omit verification evidence.
 ### Functional feature
 
 ```text
-engineering-flow-lite
+using-my-skills
 -> setup-project-context when repo workflow docs are missing
 -> domain-context when terms or boundaries are unclear
 -> design-grill-docs
@@ -471,7 +472,7 @@ engineering-flow-lite
 ### Bug or failing test
 
 ```text
-engineering-flow-lite
+using-my-skills
 -> diagnose-feedback-loop
 -> tdd-behavior-slices for regression/fix
 -> verify-before-done
@@ -480,7 +481,7 @@ engineering-flow-lite
 ### Architecture concern
 
 ```text
-engineering-flow-lite
+using-my-skills
 -> architecture-deepening
 -> design-grill-docs if behavior or structure will change
 -> tdd-behavior-slices
@@ -490,7 +491,7 @@ engineering-flow-lite
 ### Review feedback
 
 ```text
-engineering-flow-lite
+using-my-skills
 -> review-feedback-rigor
 -> tdd-behavior-slices or diagnose-feedback-loop as needed
 -> verify-before-done
@@ -499,7 +500,7 @@ engineering-flow-lite
 ### Non-functional micro-change
 
 ```text
-engineering-flow-lite
+using-my-skills
 -> direct edit
 -> targeted verification
 -> final summary
@@ -550,7 +551,7 @@ The first implementation should be tested with adversarial prompts before use:
 ## Open Questions
 
 1. Resolved: Level 1 design notes live under `docs/agents/notes/`.
-2. Recommendation: install `engineering-flow-lite` as the single bootstrap
+2. Updated recommendation: install `using-my-skills` as the single bootstrap
    skill after the replacement is complete. Project instructions such as
    `AGENTS.md` may reference it, but should not duplicate its routing logic.
 3. Recommendation: treat this repository as the replacement skill/plugin

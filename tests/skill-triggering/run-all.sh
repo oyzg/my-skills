@@ -7,7 +7,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROMPTS_DIR="$SCRIPT_DIR/prompts"
 
 SKILLS=(
-    "engineering-flow-lite"
+    "using-my-skills"
     "setup-project-context"
     "domain-context"
     "design-grill-docs"

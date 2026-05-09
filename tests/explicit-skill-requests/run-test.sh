@@ -15,7 +15,7 @@ MAX_TURNS="${3:-3}"
 
 if [ -z "$SKILL_NAME" ] || [ -z "$PROMPT_FILE" ]; then
     echo "Usage: $0 <skill-name> <prompt-file> [max-turns]"
-    echo "Example: $0 engineering-flow-lite ./prompts/engineering-flow-lite.txt"
+    echo "Example: $0 using-my-skills ./prompts/using-my-skills.txt"
     exit 1
 fi
 

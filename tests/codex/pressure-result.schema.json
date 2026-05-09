@@ -16,7 +16,7 @@
     "route": {
       "type": "string",
       "enum": [
-        "engineering-flow-lite",
+        "using-my-skills",
         "setup-project-context",
         "domain-context",
         "design-grill-docs",

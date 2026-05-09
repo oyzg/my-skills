@@ -1,1 +1,0 @@
-I want to add a feature, fix a bug, and keep the process lightweight. Decide the right engineering workflow before touching files.

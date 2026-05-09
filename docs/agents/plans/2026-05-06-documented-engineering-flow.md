@@ -7,7 +7,7 @@ engineering flow for Codex-first usage.
 
 ## Final Skill Set
 
-- `engineering-flow-lite`
+- `using-my-skills`
 - `setup-project-context`
 - `domain-context`
 - `design-grill-docs`
