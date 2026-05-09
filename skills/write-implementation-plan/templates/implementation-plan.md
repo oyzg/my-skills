@@ -19,9 +19,11 @@
 ## Steps
 
 1. <Behavior slice or structural step>
+   - Status: Pending
    - Files: <likely files/modules>
    - Test: <focused command or verification>
    - Done when: <observable result>
+   - Evidence: <fill after completion>
 
 ## Risks
 

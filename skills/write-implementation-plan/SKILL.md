@@ -27,8 +27,9 @@ single obvious edit that can move directly to `tdd-behavior-slices`.
 4. Name the files, modules, or interfaces likely to change.
 5. Attach a test or verification command to each slice.
 6. Call out dependencies, migration risks, and rollback points.
-7. Write `docs/agents/plans/YYYY-MM-DD-topic.md`.
-8. Ask the user to approve the plan before implementation.
+7. Include a status field for each step, initially `Pending`.
+8. Write `docs/agents/plans/YYYY-MM-DD-topic.md`.
+9. Ask the user to approve the plan before implementation.
 
 ## Plan Shape
 
@@ -38,6 +39,8 @@ Use `templates/implementation-plan.md`.
 
 - Plans sequence approved work; they do not invent new requirements.
 - Keep steps independently verifiable.
+- Treat plans as living progress documents: completed steps should later be
+  marked with status and evidence instead of leaving the plan stale.
 - Do not include speculative future work.
 - If the source artifact is missing or unapproved, route back to
   `design-grill-docs`.

@@ -11,6 +11,9 @@ These gates apply after `using-my-skills` classifies intent and before acting.
 - Completion claims require `verify-before-done` with fresh evidence.
 - Commit, push, merge, or PR requests use `branch-finish-lite` after checking
   status, diff, and verification evidence.
+- When working from an approved plan, completed slices must update the plan with
+  status and evidence before moving to the next planned slice or claiming
+  completion.
 - Subagents require an approved artifact or plan, independent ownership, and
   explicit approval.
 - Caveman mode changes wording only. It cannot skip the router or gates.
@@ -45,6 +48,7 @@ merged:
 
 - inspect status and relevant diff
 - compare against the request and any approved artifact
+- update the active implementation plan for completed slices when one exists
 - run fresh verification when possible
 - state blocked checks honestly
 

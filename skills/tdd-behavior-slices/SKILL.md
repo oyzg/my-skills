@@ -22,6 +22,9 @@ Start with one concise line naming this skill and why.
 5. Run the focused test.
 6. Run the relevant broader test command.
 7. Refactor only while green.
+8. If an implementation plan exists, update the completed step with status,
+   verification evidence, and any file/module changes before moving to the next
+   slice.
 
 ## Rules
 
@@ -31,6 +34,7 @@ Start with one concise line naming this skill and why.
 - Do not write all tests first and all code later.
 - Do not add speculative options for future tests.
 - If production code was written before the failing test, stop and ask whether to restart the slice correctly.
+- Do not leave an approved plan stale after completing a planned slice.
 
 ## When Not To Use
 
