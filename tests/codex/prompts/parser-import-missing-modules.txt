@@ -1,0 +1,3 @@
+Codex JSONL data is imported, but it stays as raw line-level events and never
+gets parsed into the expected AgentLens modules. The UI says no corresponding
+module was parsed. Fix the parser quickly.

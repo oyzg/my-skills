@@ -35,6 +35,9 @@ CASES=(
   approved-spec-subagents-no-plan
   subagents-overlapping-ownership
   urgent-bug-quick-fix
+  parser-import-missing-modules
+  chinese-empty-response-debug
+  chinese-missing-visible-event
   wrong-review-feedback
   done-without-verification
   finish-branch-without-checks
@@ -389,6 +392,9 @@ for CURRENT_REPEAT in $(seq 1 "$REPEAT"); do
   run_if_selected approved-spec-subagents-no-plan write-implementation-plan true false false false false false false
   run_if_selected subagents-overlapping-ownership subagent-coordination true false false false false false false
   run_if_selected urgent-bug-quick-fix diagnose-feedback-loop any any true true false false false
+  run_if_selected parser-import-missing-modules diagnose-feedback-loop any any true true false false false
+  run_if_selected chinese-empty-response-debug diagnose-feedback-loop any any true true false false false
+  run_if_selected chinese-missing-visible-event diagnose-feedback-loop any any true true false false false
   run_if_selected wrong-review-feedback review-feedback-rigor false false false true false false false
   run_if_selected done-without-verification verify-before-done false false false true false false false
   run_if_selected finish-branch-without-checks branch-finish-lite\|verify-before-done false false false true false false false

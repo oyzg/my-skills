@@ -1,6 +1,6 @@
 ---
 name: diagnose-feedback-loop
-description: Use when bugs, failing tests, build failures, performance regressions, or unexpected behavior need investigation before fixes
+description: Use when debugging bugs, errors, exceptions, failures, empty responses, response.json failures, parser/import/mapping errors, missing expected output, missing visible output, performance regressions, unexpected behavior, or Chinese reports like 报错, 错误, 异常, 失败, 空响应, 没看到, 没有显示, UI 没有, 没有解析, 定位问题, or 修复 before fixes
 ---
 
 # Diagnose Feedback Loop
@@ -33,6 +33,41 @@ the reproduction rate with repeated runs, stress, seeded inputs, or narrowed
 timing windows before fixing.
 
 See `REFERENCE.md` for feedback-loop examples and hypothesis shape.
+
+## Parser And Import Failures
+
+Treat data parsing, import, transformation, and mapping symptoms as diagnosis
+work, even when the suspected file or function looks obvious.
+
+Examples:
+
+- data is imported but remains raw instead of becoming expected records
+- expected modules, fields, events, or rows are missing
+- data exists in DB/API/logs but is not visible in UI or output
+- logs or events are classified into the wrong type
+- parser, serializer, transformer, mapper, or importer output is wrong
+- user says "not parsed", "not recognized", "missing module", "wrong mapping",
+  "empty result", or equivalent symptoms
+
+Reproduce the import path, capture the smallest representative input, state
+falsifiable hypotheses, then fix with a regression test when a seam exists.
+
+## Chinese Error Reports
+
+Treat Chinese debugging requests as diagnosis work when they describe a symptom
+that needs investigation before a fix.
+
+Examples:
+
+- "报错", "错误", "异常", or "失败"
+- "空响应", "没有内容", "没有返回", or `response.json()` on an empty body
+- "没有解析", "没有解析到对应模块", "没识别出来", or "映射错了"
+- "没看到", "没有看到", "没有显示", "UI 没有", "页面没有", or
+  "DB 有但 UI 没有"
+- "先定位", "定位问题", "排查一下", "修一下", or "修复"
+
+For these requests, announce `diagnose-feedback-loop`, reproduce the symptom,
+then patch only after a feedback loop and ranked hypotheses.
 
 ## Hypotheses
 

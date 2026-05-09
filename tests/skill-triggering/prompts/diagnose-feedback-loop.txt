@@ -1,1 +1,2 @@
-The login endpoint sometimes accepts expired tokens and a test is failing. Diagnose the bug before fixing it.
+前端调用某个 HTTP Response 的 response.json() 报错，但是响应体是空的。
+先定位是哪一个 API 返回了空响应，再修前端或后端的错误处理。
