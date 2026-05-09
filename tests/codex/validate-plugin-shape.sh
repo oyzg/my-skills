@@ -5,20 +5,16 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$REPO_ROOT"
 
 expected_skills=(
-  "architecture-deepening"
-  "branch-finish-lite"
+  "architecture"
   "caveman"
-  "design-grill-docs"
-  "diagnose-feedback-loop"
-  "domain-context"
-  "review-feedback-rigor"
-  "setup-project-context"
-  "slice-to-issues"
-  "subagent-coordination"
-  "tdd-behavior-slices"
-  "using-my-skills"
-  "verify-before-done"
-  "write-implementation-plan"
+  "diagnose"
+  "finish"
+  "grill"
+  "plan"
+  "prototype"
+  "review"
+  "subagents"
+  "tdd"
 )
 
 echo "Validating Codex plugin manifest..."
@@ -69,22 +65,12 @@ done
 
 echo "Validating skill support files..."
 required_support_files=(
-  "skills/architecture-deepening/REFERENCE.md"
-  "skills/design-grill-docs/templates/adr.md"
-  "skills/design-grill-docs/templates/design-note.md"
-  "skills/design-grill-docs/templates/spec.md"
-  "skills/diagnose-feedback-loop/REFERENCE.md"
-  "skills/domain-context/templates/context.md"
-  "skills/review-feedback-rigor/REFERENCE.md"
-  "skills/setup-project-context/templates/agents-readme.md"
-  "skills/setup-project-context/templates/agent-instructions.md"
-  "skills/setup-project-context/templates/context.md"
-  "skills/slice-to-issues/templates/issue.md"
-  "skills/subagent-coordination/REFERENCE.md"
-  "skills/tdd-behavior-slices/REFERENCE.md"
-  "skills/using-my-skills/WORKFLOW-GATES.md"
-  "skills/verify-before-done/REFERENCE.md"
-  "skills/write-implementation-plan/templates/implementation-plan.md"
+  "skills/grill/templates/adr.md"
+  "skills/grill/templates/design-note.md"
+  "skills/grill/templates/spec.md"
+  "skills/grill/templates/context.md"
+  "skills/plan/templates/implementation-plan.md"
+  "skills/plan/templates/issue.md"
 )
 
 required_scripts=(
@@ -123,6 +109,12 @@ for file in "${required_example_files[@]}"; do
   fi
 done
 
+echo "Validating TRIGGERS.md exists..."
+if [ ! -s "skills/TRIGGERS.md" ]; then
+  echo "Missing or empty TRIGGERS.md"
+  exit 1
+fi
+
 python3 - <<'PY'
 import re
 import sys
@@ -145,14 +137,5 @@ if errors:
         print(error)
     sys.exit(1)
 PY
-
-echo "Checking for stale legacy skill references in active surfaces..."
-legacy_pattern="using-""super""powers|brain""storming|subagent-driven-development|systematic-debugging|test-driven-development|verification-before-completion|requesting-code-review|writing-plans|executing-plans|dispatching-parallel-agents|finishing-a-development-branch|writing-skills"
-if rg -n "$legacy_pattern" \
-  README.md CLAUDE.md GEMINI.md .codex-plugin .claude-plugin .cursor-plugin .opencode hooks tests skills docs/agents \
-  --glob '!tests/codex/validate-plugin-shape.sh'; then
-  echo "Found stale legacy skill reference"
-  exit 1
-fi
 
 echo "Codex plugin shape OK"

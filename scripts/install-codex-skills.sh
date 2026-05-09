@@ -72,5 +72,4 @@ done
 echo "Restart Codex to pick up installed or refreshed skills."
 echo ""
 echo "For stable per-project routing, add this to the project's AGENTS.md:"
-echo '  At the start of any coding-session work, apply `using-my-skills` before acting.'
-echo "Or run setup-project-context in that project."
+echo '  Before any coding task, read skills/TRIGGERS.md and follow the matched skill.'

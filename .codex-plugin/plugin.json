@@ -1,7 +1,7 @@
 {
   "name": "my-skills",
-  "version": "0.1.0",
-  "description": "A visible documented engineering workflow for coding agents.",
+  "version": "0.2.0",
+  "description": "Lightweight engineering workflow skills: grill, plan, tdd, diagnose, finish, review, architecture, subagents, prototype, caveman.",
   "author": {
     "name": "oyzg"
   },
@@ -10,20 +10,17 @@
   "license": "MIT",
   "keywords": [
     "skills",
-    "documentation",
-    "context",
     "tdd",
     "debugging",
-    "issues",
-    "subagents",
+    "planning",
     "verification",
     "workflow"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "My Skills",
-    "shortDescription": "Visible documented development workflow for coding agents",
-    "longDescription": "Use My Skills to visibly route coding-session work through the mandatory using-my-skills bootstrap, then project context setup, domain language capture, lightweight documentation, implementation planning, local issue slicing, optional subagent coordination, behavior-first TDD, disciplined diagnosis, review feedback rigor, fresh verification, branch finish, and concise communication.",
+    "shortDescription": "Lightweight engineering workflow for coding agents",
+    "longDescription": "10 focused skills: grill (design + domain), plan (sequencing + slicing), tdd, diagnose, finish (verify + git), review, architecture, subagents, prototype, caveman.",
     "developerName": "oyzg",
     "category": "Coding",
     "capabilities": [

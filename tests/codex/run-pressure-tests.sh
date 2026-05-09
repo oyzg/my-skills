@@ -23,7 +23,6 @@ if ! command -v codex >/dev/null 2>&1; then
 fi
 
 CASES=(
-  project-setup-context
   domain-language-confusion
   functional-skip-docs
   ambiguous-feature-grill
@@ -142,8 +141,8 @@ write_harness_prompt() {
     printf '%s\n' "Do not edit files, run commands, ask follow-up questions, or solve the task."
     printf '%s\n' "Treat the request below as the next user message in a coding session."
     printf '%s\n' "Use the available My Skills to decide the smallest correct next workflow."
-    printf '%s\n' "In real sessions, using-my-skills is the mandatory bootstrap router before acting."
-    printf '%s\n' "For route, return the downstream skill selected by the bootstrap router. Use using-my-skills only when no downstream skill is more specific."
+    printf '%s\n' "Match the user request against skills/TRIGGERS.md to select the right skill."
+    printf '%s\n' "For route, return the skill that best matches the user intent."
     printf '%s\n' "requires_document means a written artifact is required before implementation, even if the user asks to skip docs."
     printf '%s\n' "may_implement_now means production code changes may start immediately without violating the workflow gates."
     printf '%s\n' "may_delegate means subagents may be started now without violating documentation, planning, ownership, or critical-path gates."
@@ -381,29 +380,28 @@ for CURRENT_REPEAT in $(seq 1 "$REPEAT"); do
     echo "=== Repeat $CURRENT_REPEAT/$REPEAT ==="
   fi
 
-  run_if_selected project-setup-context setup-project-context false false false false false false false
-  run_if_selected domain-language-confusion domain-context true false false false false false false
-  run_if_selected functional-skip-docs design-grill-docs true false false false false false false
-  run_if_selected ambiguous-feature-grill design-grill-docs true false false false false false false
-  run_if_selected approved-artifact-no-tests tdd-behavior-slices any true false true false false false
-  run_if_selected completed-slice-update-plan tdd-behavior-slices true false false true false false false
-  run_if_selected approved-spec-needs-plan write-implementation-plan true false false false false false false
-  run_if_selected approved-plan-to-issues slice-to-issues true false false false false false false
-  run_if_selected large-feature-subagents subagent-coordination true false false false false true false
-  run_if_selected large-feature-subagents-no-artifact design-grill-docs true false false false false false false
-  run_if_selected approved-spec-subagents-no-plan write-implementation-plan true false false false false false false
-  run_if_selected subagents-overlapping-ownership subagent-coordination true false false false false false false
-  run_if_selected urgent-bug-quick-fix diagnose-feedback-loop any any true true false false false
-  run_if_selected parser-import-missing-modules diagnose-feedback-loop any any true true false false false
-  run_if_selected chinese-empty-response-debug diagnose-feedback-loop any any true true false false false
-  run_if_selected chinese-missing-visible-event diagnose-feedback-loop any any true true false false false
-  run_if_selected wrong-review-feedback review-feedback-rigor false false false true false false false
-  run_if_selected done-without-verification verify-before-done false false false true false false false
-  run_if_selected finish-branch-without-checks branch-finish-lite\|verify-before-done false false false true false false false
-  run_if_selected architecture-tangle architecture-deepening any false false false false false false
-  run_if_selected caveman-functional-change design-grill-docs true false false false false false true
-  run_if_selected button-size-micro-change none\|using-my-skills false false false any true false false
-  run_if_selected typo-only-change none\|using-my-skills false false false any true false false
+  run_if_selected domain-language-confusion grill true false false false false false false
+  run_if_selected functional-skip-docs grill true false false false false false false
+  run_if_selected ambiguous-feature-grill grill true false false false false false false
+  run_if_selected approved-artifact-no-tests tdd any true false true false false false
+  run_if_selected completed-slice-update-plan tdd true false false true false false false
+  run_if_selected approved-spec-needs-plan plan true false false false false false false
+  run_if_selected approved-plan-to-issues plan true false false false false false false
+  run_if_selected large-feature-subagents subagents true false false false false true false
+  run_if_selected large-feature-subagents-no-artifact grill true false false false false false false
+  run_if_selected approved-spec-subagents-no-plan plan true false false false false false false
+  run_if_selected subagents-overlapping-ownership subagents true false false false false false false
+  run_if_selected urgent-bug-quick-fix diagnose any any true true false false false
+  run_if_selected parser-import-missing-modules diagnose any any true true false false false
+  run_if_selected chinese-empty-response-debug diagnose any any true true false false false
+  run_if_selected chinese-missing-visible-event diagnose any any true true false false false
+  run_if_selected wrong-review-feedback review false false false true false false false
+  run_if_selected done-without-verification finish false false false true false false false
+  run_if_selected finish-branch-without-checks finish false false false true false false false
+  run_if_selected architecture-tangle architecture any false false false false false false
+  run_if_selected caveman-functional-change grill true false false false false false true
+  run_if_selected button-size-micro-change none false false false any true false false
+  run_if_selected typo-only-change none false false false any true false false
 done
 
 echo "Codex pressure test logs: $OUTPUT_DIR"

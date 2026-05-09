@@ -1,7 +1,7 @@
 {
   "name": "my-skills",
-  "description": "Visible documented engineering workflow skills for coding agents.",
-  "version": "0.1.0",
+  "description": "Lightweight engineering workflow skills: grill, plan, tdd, diagnose, finish, review, architecture, subagents, prototype, caveman.",
+  "version": "0.2.0",
   "author": {
     "name": "oyzg"
   },
@@ -10,14 +10,11 @@
   "license": "MIT",
   "keywords": [
     "skills",
-    "documentation",
-    "context",
-    "planning",
     "tdd",
     "debugging",
-    "issues",
-    "subagents",
-    "verification"
+    "planning",
+    "verification",
+    "workflow"
   ],
   "skills": "./skills/",
   "hooks": "./hooks/hooks.json"

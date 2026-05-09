@@ -1,28 +1,14 @@
-# My Skills Instructions
+# My Skills
 
-At the start of any coding-session work, apply `using-my-skills` before acting.
-This is the mandatory bootstrap router for feature work, bug fixes, debugging,
-docs changes, refactors, repo cleanup, commits, pushes, reviews, branch finish,
-and verification.
+Before any coding task, read `skills/TRIGGERS.md` and follow the matched skill.
+Announce which skill you're using in one concise line.
 
-When a downstream skill matches, use it and say so in one concise line before
-continuing. If no downstream skill applies, say that `using-my-skills` routed
-the task as docs-only, cleanup-only, informational, or a micro-change.
-
-This repository is multi-platform. Treat `.codex-plugin/plugin.json`,
-`.claude-plugin/plugin.json`, `.cursor-plugin/plugin.json`, and the
-`skills/*/SKILL.md` files as the primary product surface. Gemini and OpenCode
-files are additional compatibility metadata.
-
-Functional work requires a written artifact before implementation. Functional
-work includes changes to behavior, data, APIs, state, permissions, error
-handling, architecture, or tests.
+Functional work requires a written artifact before implementation.
+Functional work includes changes to behavior, data, APIs, state, permissions,
+error handling, architecture, or tests.
 
 Pure visual micro-tweaks, typos, formatting-only changes, and narrow
 non-behavioral cleanup do not require a document.
-
-Caveman mode can compress communication, but cannot skip the router or required
-gates.
 
 Before opening a pull request, show the complete diff to the human partner and
 get explicit approval.

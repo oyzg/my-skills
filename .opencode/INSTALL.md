@@ -15,7 +15,7 @@ Add this plugin to the `plugin` array in your `opencode.json`:
 ```
 
 Restart OpenCode. The plugin registers all skills and injects the
-`engineering-flow-lite` bootstrap.
+`TRIGGERS.md` skill-matching table at session start.
 
 ## Usage
 
@@ -23,8 +23,13 @@ Use OpenCode's native `skill` tool:
 
 ```text
 use skill tool to list skills
-use skill tool to load my-skills/engineering-flow-lite
+use skill tool to load my-skills/grill
 ```
+
+## Skills
+
+grill, plan, tdd, diagnose, finish, review, architecture, subagents,
+prototype, caveman. See `skills/TRIGGERS.md` for the intent→skill mapping.
 
 ## Troubleshooting
 
