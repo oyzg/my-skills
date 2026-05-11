@@ -41,12 +41,16 @@ done
 
 mkdir -p "$DEST"
 
-for skill_dir in "$REPO_ROOT"/skills/*; do
+for skill_dir in "$REPO_ROOT"/skills/*/; do
   [ -d "$skill_dir" ] || continue
-  [ -f "$skill_dir/SKILL.md" ] || continue
+  category="$(basename "$skill_dir")"
+  for inner_dir in "$skill_dir"*/; do
+    [ -d "$inner_dir" ] || continue
+    [ -f "$inner_dir/SKILL.md" ] || continue
 
-  name="$(basename "$skill_dir")"
-  target="$DEST/$name"
+    name="$(basename "$inner_dir")"
+    mkdir -p "$DEST/$category"
+    target="$DEST/$category/$name"
 
   if [ "$DRY_RUN" -eq 1 ]; then
     echo "would link $name -> $skill_dir"
@@ -65,8 +69,9 @@ for skill_dir in "$REPO_ROOT"/skills/*; do
     fi
   fi
 
-  ln -s "$skill_dir" "$target"
-  echo "linked $name -> $skill_dir"
+  ln -s "$inner_dir" "$target"
+  echo "linked $category/$name -> $inner_dir"
+  done
 done
 
 echo "Restart Codex to pick up installed or refreshed skills."

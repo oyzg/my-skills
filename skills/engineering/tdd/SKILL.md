@@ -24,6 +24,19 @@ Implement one observable behavior at a time through public interfaces.
 - If production code was written before the failing test, stop and restart.
 - Good test names read like capabilities: `user can export profile as json`.
 - Bad test names describe implementation: `calls exportProfile helper`.
+- Every acceptance criterion in the plan slice must map to at least one test.
+  If a criterion has no test, the slice is not done.
+
+## No Silent Downgrade
+
+If during implementation you find a behavior cannot be built as planned:
+
+- Do NOT `skip` / comment out / replace with TODO / mock the real behavior.
+- Do NOT relax the test to make it pass.
+- STOP and emit a `SCOPE CHANGE PROPOSAL` (see `plan` skill) and wait for the
+  user's decision before continuing.
+
+Skipped, xfailed, or stubbed tests count as ❌ unfinished, not ✅ done.
 
 ## When Not To Use
 

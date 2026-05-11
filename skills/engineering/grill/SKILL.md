@@ -14,8 +14,21 @@ Clarify functional work and domain language before implementation.
    permissions, errors, domain language.
 3. Answer branches from the repository when possible.
 4. Interview the user — one question at a time, with your recommended answer.
-   Ask at least 3 meaningful questions for unclear work. If fewer are needed,
-   state which branches were already resolved from code or docs.
+   Scale question count to the work's scope and novelty:
+   - **Trivial change / single tweak**: at least 3 meaningful questions.
+   - **Small feature on existing system**: at least 5–7 questions.
+   - **0→1 simple new system / standalone tool**: at least **10 questions**,
+     covering users, core flows, data model, persistence, interfaces, errors,
+     non-functional requirements, scope cuts, success criteria.
+   - **0→1 complex system** (multi-module, multi-actor, distributed, or with
+     significant domain modeling): at least **15 questions**, additionally
+     covering boundaries/integrations, auth & permissions, consistency model,
+     failure & recovery, scaling expectations, observability, migration/rollout,
+     deprecation/exit, security & compliance, and explicit non-goals.
+
+   If fewer questions are needed, state which branches were already resolved
+   from code, docs, or earlier answers. Do not stop early just because the user
+   sounds confident — explicitly check each branch before skipping it.
 5. Challenge vague or conflicting domain language.
 6. Update `CONTEXT.md` immediately when terms are resolved.
 7. Choose the document level and write the artifact.

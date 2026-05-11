@@ -26,16 +26,16 @@ methodology — just the important engineering gates:
 
 | Skill | When |
 |---|---|
-| [`grill`](skills/grill/SKILL.md) | New feature, behavior change, API/data change, domain terms unclear |
-| [`plan`](skills/plan/SKILL.md) | Sequencing approved work into steps and vertical slices |
-| [`tdd`](skills/tdd/SKILL.md) | Implementing behavior one red→green→refactor cycle at a time |
-| [`diagnose`](skills/diagnose/SKILL.md) | Bugs, errors, failures — reproduce first, fix second |
-| [`finish`](skills/finish/SKILL.md) | Verify diff + evidence, then commit/push/PR |
-| [`review`](skills/review/SKILL.md) | Handling code review feedback with verification |
-| [`architecture`](skills/architecture/SKILL.md) | Coupling, boundaries, test seams blocking current work |
-| [`subagents`](skills/subagents/SKILL.md) | Parallel delegation for large approved work |
-| [`prototype`](skills/prototype/SKILL.md) | Quick spike or PoC, skip full gates |
-| [`caveman`](skills/caveman/SKILL.md) | Terse communication, same gates |
+| [`grill`](skills/engineering/grill/SKILL.md) | New feature, behavior change, API/data change, domain terms unclear |
+| [`plan`](skills/engineering/plan/SKILL.md) | Sequencing approved work into steps and vertical slices |
+| [`tdd`](skills/engineering/tdd/SKILL.md) | Implementing behavior one red→green→refactor cycle at a time |
+| [`diagnose`](skills/engineering/diagnose/SKILL.md) | Bugs, errors, failures — reproduce first, fix second |
+| [`finish`](skills/engineering/finish/SKILL.md) | Verify diff + evidence, then commit/push/PR |
+| [`review`](skills/engineering/review/SKILL.md) | Handling code review feedback with verification |
+| [`architecture`](skills/engineering/architecture/SKILL.md) | Coupling, boundaries, test seams blocking current work |
+| [`subagents`](skills/engineering/subagents/SKILL.md) | Parallel delegation for large approved work |
+| [`prototype`](skills/engineering/prototype/SKILL.md) | Quick spike or PoC, skip full gates |
+| [`caveman`](skills/engineering/caveman/SKILL.md) | Terse communication, same gates |
 
 ## How Triggering Works
 

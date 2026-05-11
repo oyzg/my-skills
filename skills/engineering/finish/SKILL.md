@@ -19,6 +19,29 @@ Before any completion claim:
 
 Red flags: "Should pass", "Looks fixed", "I already ran it earlier."
 
+## Reconciliation Gate (mandatory)
+
+Before commit / PR / marking work done, produce an explicit reconciliation
+table comparing the approved plan to what was actually built:
+
+```
+| Slice / Acceptance criterion | Status | Evidence (file:line, test, demo) | Notes |
+|---|---|---|---|
+| ... | ✅ / ❌ / ⚠️ | ... | ... |
+```
+
+Rules:
+- Every acceptance criterion from the plan must appear as a row.
+- ✅ requires concrete evidence (passing test, demo output, file location).
+- ❌ or ⚠️ rows BLOCK finish. They require an explicit user decision
+  (accept as-is, defer to follow-up issue, or keep working) before any commit,
+  push, or PR is allowed.
+- Skipped/xfailed/TODO/mock placeholders are ❌, not ✅.
+- "It compiles" / "it runs" without criterion-level evidence is ❌.
+
+Only after the table is fully ✅ or all non-✅ rows have user sign-off may you
+proceed to branch operations.
+
 ## Branch Operations
 
 After verification passes:

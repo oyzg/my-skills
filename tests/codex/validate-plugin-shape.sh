@@ -43,7 +43,7 @@ assert "Coding" == manifest["interface"]["category"]
 PY
 
 echo "Validating skill set..."
-actual="$(find skills -mindepth 2 -maxdepth 2 -name SKILL.md | sed 's#^skills/##; s#/SKILL.md$##' | sort)"
+actual="$(find skills -mindepth 3 -maxdepth 3 -name SKILL.md | sed 's#^skills/[^/]*/##; s#/SKILL.md$##' | sort)"
 expected="$(printf '%s\n' "${expected_skills[@]}" | sort)"
 
 if [ "$actual" != "$expected" ]; then
@@ -57,7 +57,7 @@ fi
 
 echo "Validating skill frontmatter..."
 for skill in "${expected_skills[@]}"; do
-  file="skills/$skill/SKILL.md"
+  file="skills/engineering/$skill/SKILL.md"
   grep -q '^---$' "$file"
   grep -q "^name: $skill$" "$file"
   grep -q '^description: Use when ' "$file"
@@ -65,12 +65,12 @@ done
 
 echo "Validating skill support files..."
 required_support_files=(
-  "skills/grill/templates/adr.md"
-  "skills/grill/templates/design-note.md"
-  "skills/grill/templates/spec.md"
-  "skills/grill/templates/context.md"
-  "skills/plan/templates/implementation-plan.md"
-  "skills/plan/templates/issue.md"
+  "skills/engineering/grill/templates/adr.md"
+  "skills/engineering/grill/templates/design-note.md"
+  "skills/engineering/grill/templates/spec.md"
+  "skills/engineering/grill/templates/context.md"
+  "skills/engineering/plan/templates/implementation-plan.md"
+  "skills/engineering/plan/templates/issue.md"
 )
 
 required_scripts=(
@@ -122,7 +122,7 @@ from pathlib import Path
 
 errors = []
 
-for skill_file in Path("skills").glob("*/SKILL.md"):
+for skill_file in Path("skills").glob("*/*/SKILL.md"):
     skill_dir = skill_file.parent
     text = skill_file.read_text()
 

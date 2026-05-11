@@ -126,9 +126,15 @@ prepare_codex_home() {
   mkdir -p "$codex_home/skills"
 
   local skill_dir
-  for skill_dir in "$REPO_ROOT"/skills/*; do
-    [ -d "$skill_dir" ] || continue
-    ln -s "$skill_dir" "$codex_home/skills/$(basename "$skill_dir")"
+  for category_dir in "$REPO_ROOT"/skills/*/; do
+    [ -d "$category_dir" ] || continue
+    local category_name
+    category_name="$(basename "$category_dir")"
+    mkdir -p "$codex_home/skills/$category_name"
+    for skill_dir in "$category_dir"*/; do
+      [ -d "$skill_dir" ] && [ -f "$skill_dir/SKILL.md" ] || continue
+      ln -s "$skill_dir" "$codex_home/skills/$category_name/$(basename "$skill_dir")"
+    done
   done
 }
 
